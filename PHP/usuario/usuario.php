@@ -1,6 +1,8 @@
 <?PHP 
 
-require ('php/conectar.php');
+// header('Content-Type: application/json');
+
+require ('../conectar.php');
 
 function buscarEmpleado(){
 
@@ -9,17 +11,15 @@ function buscarEmpleado(){
     $datos = $sentencia->fetchAll(PDO::FETCH_ASSOC);
     $respuesta = json_encode($datos);
     echo $respuesta;
-
 }
-
 
 
 $method = $_SERVER['REQUEST_METHOD'];
 switch($method) {
-    case 'POST':
-        buscarEmpleado();
+    case 'POST':        
     break;
     case 'GET': 
+        buscarEmpleado();
     break;
     case 'DELETE':
     break;

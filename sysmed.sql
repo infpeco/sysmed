@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-11-2019 a las 03:18:37
+-- Tiempo de generación: 29-11-2019 a las 20:54:05
 -- Versión del servidor: 10.1.29-MariaDB
 -- Versión de PHP: 7.1.12
 
@@ -493,13 +493,6 @@ CREATE TABLE `paciente` (
   `Estado` varchar(50) COLLATE utf8_bin DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
---
--- Volcado de datos para la tabla `paciente`
---
-
-INSERT INTO `paciente` (`idpaciente`, `Nombre`, `Apellido`, `Direccion`, `Identificacion`, `TipoIdentificacion`, `Sexo`, `TipoSangre`, `idars`, `NumSeguroSocial`, `AntecedenteFamiliares`, `Alergia/Afeccion`, `FechaEntrada`, `FechaNacimiento`, `Familiar/Tutor`, `Estado`) VALUES
-(1, 'Karen', 'Germoso Tavárez', 'Aut. Duarte km 4 1/2, Sabaneta las Palomas, Los Germoso', '402-1350373-9', b'1', 'Femenino', 'B+', 2, 98545678, 'Diabetes', 'Alergia alimentaria: Piña', '2019-11-29', '1997-06-25', 'Santiago Germoso', 'A');
-
 -- --------------------------------------------------------
 
 --
@@ -656,6 +649,7 @@ ALTER TABLE `lab_factura`
 --
 ALTER TABLE `lab_muestra`
   ADD PRIMARY KEY (`idmuestra_lab`),
+  ADD UNIQUE KEY `idmuestra_lab` (`idmuestra_lab`),
   ADD KEY `FK` (`idprueba_labprueba`,`idumedida_labnidadmedida`),
   ADD KEY `idumedida_labnidadmedida` (`idumedida_labnidadmedida`);
 
@@ -847,12 +841,6 @@ ALTER TABLE `lab_ncf`
   MODIFY `idncf_lab` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT de la tabla `lab_prueba`
---
-ALTER TABLE `lab_prueba`
-  MODIFY `idprueba_lab` bigint(20) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT de la tabla `lab_resultado`
 --
 ALTER TABLE `lab_resultado`
@@ -874,7 +862,7 @@ ALTER TABLE `lab_unidadmedida`
 -- AUTO_INCREMENT de la tabla `nut_asignaciondieta`
 --
 ALTER TABLE `nut_asignaciondieta`
-  MODIFY `idasiganciondieta` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idasiganciondieta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
 
 --
 -- AUTO_INCREMENT de la tabla `nut_dieta`
@@ -892,7 +880,7 @@ ALTER TABLE `nut_tipodieta`
 -- AUTO_INCREMENT de la tabla `paciente`
 --
 ALTER TABLE `paciente`
-  MODIFY `idpaciente` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idpaciente` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `telefono`
@@ -961,8 +949,8 @@ ALTER TABLE `empleado`
 --
 ALTER TABLE `lab_citologiavaginal`
   ADD CONSTRAINT `lab_citologiavaginal_ibfk_1` FOREIGN KEY (`idempleado_empleado`) REFERENCES `empleado` (`idempleado`) ON UPDATE NO ACTION,
-  ADD CONSTRAINT `lab_citologiavaginal_ibfk_3` FOREIGN KEY (`idresultado_labresultado`) REFERENCES `lab_resultado` (`idresultado`) ON UPDATE NO ACTION,
-  ADD CONSTRAINT `lab_citologiavaginal_ibfk_4` FOREIGN KEY (`idprueba_labprueba`) REFERENCES `lab_prueba` (`idprueba_lab`);
+  ADD CONSTRAINT `lab_citologiavaginal_ibfk_2` FOREIGN KEY (`idprueba_labprueba`) REFERENCES `lab_prueba` (`idprueba_lab`) ON UPDATE NO ACTION,
+  ADD CONSTRAINT `lab_citologiavaginal_ibfk_3` FOREIGN KEY (`idresultado_labresultado`) REFERENCES `lab_resultado` (`idresultado`) ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `lab_condicionpago`
@@ -975,7 +963,7 @@ ALTER TABLE `lab_condicionpago`
 --
 ALTER TABLE `lab_detallefactura`
   ADD CONSTRAINT `lab_detallefactura_ibfk_1` FOREIGN KEY (`idfactura_labfactura`) REFERENCES `lab_factura` (`idfactura_lab`) ON UPDATE NO ACTION,
-  ADD CONSTRAINT `lab_detallefactura_ibfk_2` FOREIGN KEY (`idprueba_labprueba`) REFERENCES `lab_prueba` (`idprueba_lab`) ON DELETE CASCADE;
+  ADD CONSTRAINT `lab_detallefactura_ibfk_2` FOREIGN KEY (`idprueba_labprueba`) REFERENCES `lab_prueba` (`idprueba_lab`) ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `lab_detalleresultado`
@@ -999,6 +987,7 @@ ALTER TABLE `lab_factura`
 --
 ALTER TABLE `lab_muestra`
   ADD CONSTRAINT `lab_muestra_ibfk_1` FOREIGN KEY (`idmuestra_lab`) REFERENCES `lab_muestra` (`idmuestra_lab`) ON UPDATE NO ACTION,
+  ADD CONSTRAINT `lab_muestra_ibfk_2` FOREIGN KEY (`idprueba_labprueba`) REFERENCES `lab_prueba` (`idprueba_lab`),
   ADD CONSTRAINT `lab_muestra_ibfk_3` FOREIGN KEY (`idumedida_labnidadmedida`) REFERENCES `lab_unidadmedida` (`idumedida_lab`) ON UPDATE NO ACTION;
 
 --
@@ -1019,8 +1008,8 @@ ALTER TABLE `lab_resultado`
 --
 ALTER TABLE `lab_resultadobiopsia`
   ADD CONSTRAINT `lab_resultadobiopsia_ibfk_1` FOREIGN KEY (`idempleado_empleado`) REFERENCES `empleado` (`idempleado`) ON UPDATE NO ACTION,
-  ADD CONSTRAINT `lab_resultadobiopsia_ibfk_3` FOREIGN KEY (`idresultado_labresultado`) REFERENCES `lab_resultado` (`idresultado`) ON UPDATE NO ACTION,
-  ADD CONSTRAINT `lab_resultadobiopsia_ibfk_4` FOREIGN KEY (`idprueba_labprueba`) REFERENCES `lab_prueba` (`idprueba_lab`);
+  ADD CONSTRAINT `lab_resultadobiopsia_ibfk_2` FOREIGN KEY (`idprueba_labprueba`) REFERENCES `lab_prueba` (`idprueba_lab`) ON UPDATE NO ACTION,
+  ADD CONSTRAINT `lab_resultadobiopsia_ibfk_3` FOREIGN KEY (`idresultado_labresultado`) REFERENCES `lab_resultado` (`idresultado`) ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `nut_asignaciondieta`

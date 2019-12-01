@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Focus Admin: Admin UI</title>
+
+
+  <!-- Styles -->
+
+  <link href="../../css/style-tab.css" rel="stylesheet"></link>
+  <link href="../../css/lib/font-awesome.min.css" rel="stylesheet">
+  <link href="../../css/lib/themify-icons.css" rel="stylesheet">
+  <link href="../../css/lib/menubar/sidebar.css" rel="stylesheet">
+  <link href="../../css/lib/bootstrap.min.css" rel="stylesheet">
+  <link href="../../css/style.css" rel="stylesheet">
+
+   <!-- PROPIAS --> 
+   <script src="../../js/emergencia/funciones.js"></script>
+  <script src="../../js/emergencia/emergencia.js"></script>
+  <script src="../../js/emergencia/tabs-emergencia.js"></script>
+  <script src="../../js/emergencia/emergencia.js"></script>
+
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
+  <link rel="stylesheet" href="../../css/lib/style2.css">
+  <script >
+    $(document).ready(function(){
+      $("#subir").click(function(){
+        $("p").hide(1000);
+      });
+    });
+  </script>
+
+
+</head>
+
+<body style="position:absolute; height:auto; width:100%;">
+
+
+  <!--MENU DE LA PAGINA-->
+  <div class="sidebar sidebar-hide-to-small sidebar-shrink sidebar-gestures">
+    <div class="nano">
+      <div class="nano-content" style="font-family: Bahnschrift SemiBold" id="divmenu">
+      </div>
+    </div>
+  </div>
+  <!--HEADER O CABECERA DE LA PAGINA-->
+  <div class="header">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="float-left">
+            <!--PARTE IZQUIERDA DE LA PAGINA-->
+            <div class="hamburger sidebar-toggle" id="divheaderizquierda"></div>
+          </div>
+          <div style="padding-left: 1%; display: inline;" id="divheadertitulo">
+            <!--TITULO DE LA PAGINA-->
+          </div>
+          <div class="float-right" id="divheadersalir">
+            <!--PARTE DERECHA DE LA PAGINA-->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--CUERPO DEL DOCUMENTO-->
+  <div class="content-wrap">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12">
+
+            <section>
+          <div class="tab-hor">
+            
+            <button class="tablinks" id= "subir" onclick="openTab(event, 'Admision');BotonA('Nuevo')"><h5><b> Admisión </b></h5></button>
+            <button class="tablinks" id= "subir" onclick="openTab(event, 'Evaluacion');BotonE('Nuevo')"><h5><b> Evaluación </b></h5></button>
+            <button class="tablinks" id= "subir" onclick="openTab(event, 'Referencias');BotonR('Nuevo') "><h5><b> Referencia </b></h5></button>
+            <button class="tablinks" id= "subir" onclick="openTab(event, 'Registro') " ><h5 style="color: blue;"><b> Registros </b></h5></button>
+            
+          </div><br>
+              <p align ="center"><img src="../../images/emergencia/Emer.png" style="max-width: 100%;height: auto;"></p>
+        </section>
+
+        
+          <div id="Admision" class="tabcontent"> </div>
+
+          <div id="Evaluacion" class="tabcontent"> </div>
+
+          <div id="Referencias" class="tabcontent" > </div>
+
+          <div id="Registro" class="tabcontent" > </div>
+
+          <!-- <div class="card">
+          <section  class="main-content"> aqui va el contenido, dentro de la seccion-
+            <label><h4>ETIQUETA </h4></label>
+            <input type="text" class="form-control" style="width: 200px; display: inline;" >
+            <input type="date" class="form-control" style="width: 200px">
+            <input type="submit" value="Registrar" class="btn btn-secondary py-2 px-2" style="width: 100px">
+          </section>
+        </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- jquery vendor -->
+  <!-- <script language="javascript"  src="../../js/laboratorio/abrirsubmodulo.js"></script> -->
+
+  <script src="../../js/lib/jquery.min.js"></script>
+  <script src="../../js/lib/jquery.nanoscroller.min.js"></script>
+  <!-- nano scroller -->
+  <script src="../../js/lib/menubar/sidebar.js"></script>
+  <script src="../../js/lib/preloader/pace.min.js"></script>
+  <!-- sidebar -->
+  <script src="../../js/lib/bootstrap.min.js"></script>
+  <!-- <script src="../../js/form-pacientes.js"></script> -->
+
+  <script src="../../js/menu/menumodulos.js"></script>
+
+</body>
+</html>

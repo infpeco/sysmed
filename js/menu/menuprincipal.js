@@ -11,7 +11,7 @@ window.onload = function () {
                 "<!--SUBMENU PERSONAL: PACIENTES-->"+
                 "<li><a href='/index.html'><img src='images/personal/paciente.png' width='28px'><span style='padding-left: 5%'></span>Pacientes</a></li>"+
                 "<!--SUBMENU PERSONAL: REGISTROS-->"+
-                "<li><a href='html/registros/registros.html' ><i><img src='images/plantilla/plantilla.png' width='28px'></i><span style='padding-left: 5%'></span>Registros</a></li>"+
+                "<li><a href='html/registro/registro.html' ><i><img src='images/plantilla/plantilla.png' width='28px'></i><span style='padding-left: 5%'></span>Registros</a></li>"+
                 "</li>"+
                 "<!--MENU DEPARTAMENTO-->"+
                 "<li class='label' style='font-size: 20px;' ><b>Departamentos</b></li>"+

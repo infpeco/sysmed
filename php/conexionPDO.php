@@ -3,7 +3,7 @@
 //  header('Content-Type: application/json');
     function getConexion(){
         $database_username = 'root';
-        $database_password = 'nomejoda';
+        $database_password = '/1LwU4caFTN5mSkfzr2V';
         try {      
             $pdo_conn = new PDO('mysql:host=localhost;dbname=sysmed', $database_username, $database_password);   
             $pdo_conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);           

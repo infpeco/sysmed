@@ -1,11 +1,12 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-11-2019 a las 03:18:37
--- Versión del servidor: 10.1.29-MariaDB
--- Versión de PHP: 7.1.12
+-- Tiempo de generación: 29-11-2019 a las 17:36:09
+-- Versión del servidor: 10.4.6-MariaDB
+-- Versión de PHP: 7.3.9
+use sysmed;
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -92,14 +93,14 @@ CREATE TABLE `con_facturacion` (
 CREATE TABLE `eme_admision` (
   `idadmision` bigint(20) NOT NULL,
   `idpaciente` bigint(20) NOT NULL,
-  `motivo` text COLLATE utf8_bin,
+  `motivo` text COLLATE utf8_bin DEFAULT NULL,
   `triaje` tinyint(1) NOT NULL,
-  `fechaEntrada` text COLLATE utf8_bin,
-  `parentesco` text COLLATE utf8_bin,
-  `nombre_pariente` text COLLATE utf8_bin,
-  `direccion_pariente` text COLLATE utf8_bin,
-  `telefono_pariente` text COLLATE utf8_bin,
-  `celular_pariente` text COLLATE utf8_bin
+  `fechaEntrada` text COLLATE utf8_bin DEFAULT NULL,
+  `parentesco` text COLLATE utf8_bin DEFAULT NULL,
+  `nombre_pariente` text COLLATE utf8_bin DEFAULT NULL,
+  `direccion_pariente` text COLLATE utf8_bin DEFAULT NULL,
+  `telefono_pariente` text COLLATE utf8_bin DEFAULT NULL,
+  `celular_pariente` text COLLATE utf8_bin DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
@@ -182,13 +183,6 @@ CREATE TABLE `empleado` (
   `Tipo` varchar(50) COLLATE utf8_bin NOT NULL,
   `Estado` varchar(1) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
---
--- Volcado de datos para la tabla `empleado`
---
-
-INSERT INTO `empleado` (`idempleado`, `Nombre`, `Apellido`, `Direccion`, `Identificacion`, `TipoIdentificacion`, `Sexo`, `TipoSangre`, `idars`, `NumSeguroSocial`, `Area`, `Cargo`, `Escolaridad`, `Departamento`, `Especialidad`, `FechaEntrada`, `FechaNacimiento`, `Correo`, `Experiencia`, `Tipo`, `Estado`) VALUES
-(1, 'PEDRO', 'INFANTE', 'EN SU CASA', '000-000000000-0', b'1', 'HOMBRE', 'A+', 5, 11, 'INFORMATICA', 'BRECHERO', 'BACHILLER', 'INFORMATICA', 'VER PORNO', '2019-11-29', '2019-11-28', 'INFO@CORREO.COM', 1, 'MAESTRO CONSTRUCTOR', '1');
 
 -- --------------------------------------------------------
 
@@ -493,23 +487,28 @@ CREATE TABLE `paciente` (
   `Estado` varchar(50) COLLATE utf8_bin DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+-- --------------------------------------------------------
+
 --
--- Volcado de datos para la tabla `paciente`
+-- Estructura de tabla para la tabla `telefonoempleado`
 --
 
-INSERT INTO `paciente` (`idpaciente`, `Nombre`, `Apellido`, `Direccion`, `Identificacion`, `TipoIdentificacion`, `Sexo`, `TipoSangre`, `idars`, `NumSeguroSocial`, `AntecedenteFamiliares`, `Alergia/Afeccion`, `FechaEntrada`, `FechaNacimiento`, `Familiar/Tutor`, `Estado`) VALUES
-(1, 'Karen', 'Germoso Tavárez', 'Aut. Duarte km 4 1/2, Sabaneta las Palomas, Los Germoso', '402-1350373-9', b'1', 'Femenino', 'B+', 2, 98545678, 'Diabetes', 'Alergia alimentaria: Piña', '2019-11-29', '1997-06-25', 'Santiago Germoso', 'A');
+CREATE TABLE `telefonoempleado` (
+  `idtelefonoempleado` bigint(20) NOT NULL,
+  `telefono` varchar(15) COLLATE utf8_bin NOT NULL,
+  `idempleado` bigint(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `telefono`
+-- Estructura de tabla para la tabla `telefonopaciente`
 --
 
-CREATE TABLE `telefono` (
-  `idtelefonoempleado` bigint(20) NOT NULL,
+CREATE TABLE `telefonopaciente` (
+  `idtelefonopaciente` bigint(20) NOT NULL,
   `telefono` varchar(15) COLLATE utf8_bin NOT NULL,
-  `idempleado` bigint(20) NOT NULL
+  `idpaciente` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
@@ -656,6 +655,7 @@ ALTER TABLE `lab_factura`
 --
 ALTER TABLE `lab_muestra`
   ADD PRIMARY KEY (`idmuestra_lab`),
+  ADD UNIQUE KEY `idmuestra_lab` (`idmuestra_lab`),
   ADD KEY `FK` (`idprueba_labprueba`,`idumedida_labnidadmedida`),
   ADD KEY `idumedida_labnidadmedida` (`idumedida_labnidadmedida`);
 
@@ -732,12 +732,20 @@ ALTER TABLE `paciente`
   ADD KEY `idars` (`idars`);
 
 --
--- Indices de la tabla `telefono`
+-- Indices de la tabla `telefonoempleado`
 --
-ALTER TABLE `telefono`
+ALTER TABLE `telefonoempleado`
   ADD PRIMARY KEY (`idtelefonoempleado`),
   ADD UNIQUE KEY `idtelefonoempleadoind` (`idtelefonoempleado`) USING BTREE,
   ADD KEY `telefonoempleado_ibfk_1` (`idempleado`);
+
+--
+-- Indices de la tabla `telefonopaciente`
+--
+ALTER TABLE `telefonopaciente`
+  ADD PRIMARY KEY (`idtelefonopaciente`),
+  ADD UNIQUE KEY `idtelefonopacienteind` (`idtelefonopaciente`) USING BTREE,
+  ADD KEY `idpaciente` (`idpaciente`);
 
 --
 -- Indices de la tabla `usuario`
@@ -790,7 +798,7 @@ ALTER TABLE `eme_referencia`
 -- AUTO_INCREMENT de la tabla `empleado`
 --
 ALTER TABLE `empleado`
-  MODIFY `idempleado` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idempleado` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `lab_ars`
@@ -847,12 +855,6 @@ ALTER TABLE `lab_ncf`
   MODIFY `idncf_lab` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT de la tabla `lab_prueba`
---
-ALTER TABLE `lab_prueba`
-  MODIFY `idprueba_lab` bigint(20) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT de la tabla `lab_resultado`
 --
 ALTER TABLE `lab_resultado`
@@ -874,7 +876,7 @@ ALTER TABLE `lab_unidadmedida`
 -- AUTO_INCREMENT de la tabla `nut_asignaciondieta`
 --
 ALTER TABLE `nut_asignaciondieta`
-  MODIFY `idasiganciondieta` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idasiganciondieta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
 
 --
 -- AUTO_INCREMENT de la tabla `nut_dieta`
@@ -889,16 +891,28 @@ ALTER TABLE `nut_tipodieta`
   MODIFY `idtipodieta` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `nut_tipodieta`
+--
+ALTER TABLE `lab_prueba`
+  MODIFY `idprueba_lab` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `paciente`
 --
 ALTER TABLE `paciente`
-  MODIFY `idpaciente` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idpaciente` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `telefono`
+-- AUTO_INCREMENT de la tabla `telefonoempleado`
 --
-ALTER TABLE `telefono`
+ALTER TABLE `telefonoempleado`
   MODIFY `idtelefonoempleado` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `telefonopaciente`
+--
+ALTER TABLE `telefonopaciente`
+  MODIFY `idtelefonopaciente` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
@@ -961,8 +975,8 @@ ALTER TABLE `empleado`
 --
 ALTER TABLE `lab_citologiavaginal`
   ADD CONSTRAINT `lab_citologiavaginal_ibfk_1` FOREIGN KEY (`idempleado_empleado`) REFERENCES `empleado` (`idempleado`) ON UPDATE NO ACTION,
-  ADD CONSTRAINT `lab_citologiavaginal_ibfk_3` FOREIGN KEY (`idresultado_labresultado`) REFERENCES `lab_resultado` (`idresultado`) ON UPDATE NO ACTION,
-  ADD CONSTRAINT `lab_citologiavaginal_ibfk_4` FOREIGN KEY (`idprueba_labprueba`) REFERENCES `lab_prueba` (`idprueba_lab`);
+  ADD CONSTRAINT `lab_citologiavaginal_ibfk_2` FOREIGN KEY (`idprueba_labprueba`) REFERENCES `lab_prueba` (`idprueba_lab`) ON UPDATE NO ACTION,
+  ADD CONSTRAINT `lab_citologiavaginal_ibfk_3` FOREIGN KEY (`idresultado_labresultado`) REFERENCES `lab_resultado` (`idresultado`) ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `lab_condicionpago`
@@ -975,7 +989,7 @@ ALTER TABLE `lab_condicionpago`
 --
 ALTER TABLE `lab_detallefactura`
   ADD CONSTRAINT `lab_detallefactura_ibfk_1` FOREIGN KEY (`idfactura_labfactura`) REFERENCES `lab_factura` (`idfactura_lab`) ON UPDATE NO ACTION,
-  ADD CONSTRAINT `lab_detallefactura_ibfk_2` FOREIGN KEY (`idprueba_labprueba`) REFERENCES `lab_prueba` (`idprueba_lab`) ON DELETE CASCADE;
+  ADD CONSTRAINT `lab_detallefactura_ibfk_2` FOREIGN KEY (`idprueba_labprueba`) REFERENCES `lab_prueba` (`idprueba_lab`) ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `lab_detalleresultado`
@@ -999,6 +1013,7 @@ ALTER TABLE `lab_factura`
 --
 ALTER TABLE `lab_muestra`
   ADD CONSTRAINT `lab_muestra_ibfk_1` FOREIGN KEY (`idmuestra_lab`) REFERENCES `lab_muestra` (`idmuestra_lab`) ON UPDATE NO ACTION,
+  ADD CONSTRAINT `lab_muestra_ibfk_2` FOREIGN KEY (`idprueba_labprueba`) REFERENCES `lab_prueba` (`idprueba_lab`),
   ADD CONSTRAINT `lab_muestra_ibfk_3` FOREIGN KEY (`idumedida_labnidadmedida`) REFERENCES `lab_unidadmedida` (`idumedida_lab`) ON UPDATE NO ACTION;
 
 --
@@ -1019,8 +1034,8 @@ ALTER TABLE `lab_resultado`
 --
 ALTER TABLE `lab_resultadobiopsia`
   ADD CONSTRAINT `lab_resultadobiopsia_ibfk_1` FOREIGN KEY (`idempleado_empleado`) REFERENCES `empleado` (`idempleado`) ON UPDATE NO ACTION,
-  ADD CONSTRAINT `lab_resultadobiopsia_ibfk_3` FOREIGN KEY (`idresultado_labresultado`) REFERENCES `lab_resultado` (`idresultado`) ON UPDATE NO ACTION,
-  ADD CONSTRAINT `lab_resultadobiopsia_ibfk_4` FOREIGN KEY (`idprueba_labprueba`) REFERENCES `lab_prueba` (`idprueba_lab`);
+  ADD CONSTRAINT `lab_resultadobiopsia_ibfk_2` FOREIGN KEY (`idprueba_labprueba`) REFERENCES `lab_prueba` (`idprueba_lab`) ON UPDATE NO ACTION,
+  ADD CONSTRAINT `lab_resultadobiopsia_ibfk_3` FOREIGN KEY (`idresultado_labresultado`) REFERENCES `lab_resultado` (`idresultado`) ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `nut_asignaciondieta`
@@ -1043,10 +1058,16 @@ ALTER TABLE `paciente`
   ADD CONSTRAINT `paciente_ibfk_1` FOREIGN KEY (`idars`) REFERENCES `lab_ars` (`idars_lab`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Filtros para la tabla `telefono`
+-- Filtros para la tabla `telefonoempleado`
 --
-ALTER TABLE `telefono`
-  ADD CONSTRAINT `telefono_ibfk_1` FOREIGN KEY (`idempleado`) REFERENCES `empleado` (`idempleado`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `telefonoempleado`
+  ADD CONSTRAINT `telefonoempleado_ibfk_1` FOREIGN KEY (`idempleado`) REFERENCES `empleado` (`idempleado`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `telefonopaciente`
+--
+ALTER TABLE `telefonopaciente`
+  ADD CONSTRAINT `telefonopaciente_ibfk_1` FOREIGN KEY (`idpaciente`) REFERENCES `paciente` (`idpaciente`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `usuario`

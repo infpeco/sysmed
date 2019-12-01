@@ -1,5 +1,5 @@
 function buscarUsuarios(){
-    fetch('PHP/usuario/usuario.php')
+    fetch('/php/usuario/usuario.php')
     .then(res => res.json())
     .then(res => {
         console.log(res);

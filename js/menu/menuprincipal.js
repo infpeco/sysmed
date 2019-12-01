@@ -16,13 +16,13 @@ window.onload = function () {
                 "<!--MENU DEPARTAMENTO-->"+
                 "<li class='label' style='font-size: 20px;' ><b>Departamentos</b></li>"+
                 "<!--SUBMENU DEPARTAMENTO: CONSULTORIO-->"+
-                "<li><a href='html/consultorio/consultorio.html' ><i><img src='images/consultorio/consultorio.png' width='28px'></i><span style='padding-left: 5%'></span>Consultorio</a></li>"+
+                "<li><a href='/html/consultorio/consultorio.html' ><i><img src='images/consultorio/consultorio.png' width='28px'></i><span style='padding-left: 5%'></span>Consultorio</a></li>"+
                 "<!--SUBMENU DEPARTAMENTO: Emergencia-->"+
-                "<li><a href='html/emergencia/Emergencias.html' ><i><img src='images/emergencia/emergencia.png' width='28px'></i><span style='padding-left: 5%'></span>Emergencia</a></li>"+
+                "<li><a href='html/emergencia/emergencia.html' ><i><img src='images/emergencia/emergencia.png' width='28px'></i><span style='padding-left: 5%'></span>Emergencia</a></li>"+
                 "<!--SUBMENU DEPARTAMENTO: Laboratorio-->"+
                 "<li><a href='html/laboratorio/laboratorio.html'><i><img src='images/laboratorio/laboratorio.png' width='28px'></i><span style='padding-left: 5%'></span>Laboratorio</a></li>  "+            
                 "<!--SUBMENU DEPARTAMENTO: Nutrición-->"+
-                "<li><a href='html/Nutricion/Nutricion.html' ><i><img src='images/nutricion/nutricion.png' width='28px'></i><span style='padding-left: 5%'></span>Nutrición</a></li>"+
+                "<li><a href='html/nutricion/nutricion.html' ><i><img src='images/nutricion/nutricion.png' width='28px'></i><span style='padding-left: 5%'></span>Nutrición</a></li>"+
 
                 "<!--MENU UTILITARIO-->"+
                 

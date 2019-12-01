@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>CONSULTORIO</title>
+    <!-- Styles -->
+    <link href="../../css/lib/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/lib/themify-icons.css" rel="stylesheet">
+    <link href="../../css/lib/menubar/sidebar.css" rel="stylesheet">
+    <link href="../../css/lib/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/style.css" rel="stylesheet">
+    <link href="../../css/style-tab.css" rel="stylesheet">
+    <link href="../../css/lib/style2.css" rel="stylesheet">
+    <link href="../../css/efectosespeciales.css" rel="stylesheet">
+    <!-- SCRIPT PARA LAS PESTAÑAS  -->
+    <script src="../../js/consultorio/tabs_consultorio.js"></script>
+    <!-- SCRIPT PARA CARGAR FORMULARIO EN LA SECCIONES  -->
+    <script src="../../js/consultorio/formulario-consultorio.js"></script>
+    <script src="../../js/consultorio/funcion.js"></script>
+</head>
+
+<body style="position:absolute; height:auto; width:100%;">
+
+
+    <!--MENU DE LA PAGINA-->
+    <div class="sidebar sidebar-hide-to-small sidebar-shrink sidebar-gestures">
+        <div class="nano">
+            <div class="nano-content" style="font-family: Bahnschrift SemiBold" id="divmenu">
+            </div>
+        </div>
+    </div>
+
+    <!--HEADER O CABECERA DE LA PAGINA-->
+    <div class="header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="float-left">
+                        <!--PARTE IZQUIERDA DE LA PAGINA-->
+                        <div class="hamburger sidebar-toggle" id="divheaderizquierda"></div>
+                    </div>
+                    <div style="padding-left: 1%; display: inline;" id="divheadertitulo">
+                        <!--TITULO DE LA PAGINA-->
+                    </div>
+                    <div class="float-right" id="divheadersalir">
+                        <!--PARTE DERECHA DE LA PAGINA-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--CUERPO DEL DOCUMENTO EL MODUCLO COMPLETO-->
+    <div class="content-wrap">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <!-- PESTAÑAS DEL MODULO -->
+                    <div class="tab-hor">
+
+                        <!-- AGREGAR UN BOTON POR CADA SECCION  -->
+                        <button id="abrir" class="tablinks" onclick="openTab(event, 'pest-1')">CONSULTA MEDICA</button>
+                        <button class="tablinks" onclick="openTab(event, 'pest-2')">HACER CITA</button>
+                        <button class="tablinks" onclick="openTab(event, 'pest-3')">CONSULTA DE CITAS</button>
+                        <button class="tablinks" onclick="openTab(event, 'pest-4')">FACTURACION DE CONSULTA</button>
+
+
+                    </div>
+
+
+
+                    <!-- UN <div> PARA CADA PESTAÑA-->
+                    <div id="pest-1" class="tabcontent">
+                        <!-- El contenido de la pestaña 1 se carga desde funcion mostrarPestana_1  -->
+                    </div>
+
+                    <div id="pest-2" class="tabcontent">
+                        <!-- El contenido de la pestaña 2 se carga desde funcion mostrarPestana_2  -->
+                    </div>
+
+                    <div id="pest-3" class="tabcontent">
+                        <!-- El contenido de la pestaña 3 se carga desde funcion mostrarPestana_3  -->
+
+                    </div>
+                    <div id="pest-4" class="tabcontent">
+                        <!-- El contenido de la pestaña 4 se carga desde funcion mostrarPestana_4  -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jquery vendor -->
+    <script src="../../js/lib/jquery.min.js"></script>
+    <script src="../../js/lib/jquery.nanoscroller.min.js"></script>
+    <!-- nano scroller -->
+    <script src="../../js/lib/menubar/sidebar.js"></script>
+    <script src="../../js/lib/preloader/pace.min.js"></script>
+    <!-- sidebar -->
+    <script src="../../js/lib/bootstrap.min.js"></script>
+    <!-- <script src="js/usuario/usuario.js"></script> -->
+    <script src="../../js/menu/menumodulos.js"></script>
+
+
+</body>
+
+</html>

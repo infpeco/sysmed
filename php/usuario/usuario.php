@@ -1,7 +1,7 @@
 <?PHP 
-// header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Origin: *");
 
-// header('Content-Type: application/json');
+header('Content-Type: application/json');
 
 include ('../conectar.php');
 

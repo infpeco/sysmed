@@ -11,7 +11,7 @@ window.onload = function () {
         "<!--SUBMENU PERSONAL: PACIENTES-->"+
         "<li><a href='/index.html'><img src='../../images/personal/paciente.png' width='28px'><span style='padding-left: 5%'></span>Pacientes</a></li>"+
         "<!--SUBMENU PERSONAL: REGISTROS-->"+
-        "<li><a href='../../html/registros/registros.html' ><i><img src='../../images/plantilla/plantilla.png' width='28px'></i><span style='padding-left: 5%'></span>Registros</a></li>"+
+        "<li><a href='../../html/registro/registro.html' ><i><img src='../../images/plantilla/plantilla.png' width='28px'></i><span style='padding-left: 5%'></span>Registros</a></li>"+
         "</li>"+
         "<!--MENU DEPARTAMENTO-->"+
         "<li class='label' style='font-size: 20px;' ><b>Departamentos</b></li>"+
@@ -22,20 +22,7 @@ window.onload = function () {
         "<!--SUBMENU DEPARTAMENTO: Laboratorio-->"+
         "<li><a href='../../html/laboratorio/laboratorio.html'><i><img src='../../images/laboratorio/laboratorio.png' width='28px'></i><span style='padding-left: 5%'></span>Laboratorio</a></li>  "+            
         "<!--SUBMENU DEPARTAMENTO: Nutrición-->"+
-        "<li><a href='../../html/nutricion/nutricion.html' ><i><img src='../../images/nutricion/nutricion.png' width='28px'></i><span style='padding-left: 5%'></span>Nutrición</a></li>"+
-
-        "<!--MENU UTILITARIO-->"+
-        
-        "<li class='label' style='font-size: 20px;'>Utilitario</li>"+
-        "<!--SUBMENU UTILITARIO:MANTENIMIENTO-->"+
-        "<li><a class='sidebar-sub-toggle'><i><img src='../../images/mantenimiento/mantenimiento.png' width='28px'></i><span style='padding-left: 5%'></span>Mantenimiento<span class='sidebar-collapse-icon ti-angle-down'></span></a>"+
-           " <ul>"+
-                "<li><a href='/index.html'><img src='../../images/mantenimiento/banco.png' width='28px'><span style='padding-left: 5%'></span>Bancos</a></li>"+
-                "<li><a href='/index.html'><img src='../../images/mantenimiento/comprobantefiscal.png' width='28px'><span style='padding-left: 5%'></span>Comprobantes Fiscales</a></li>"+
-               " <li><a href='/index.html'><img src='../../images/mantenimiento/segurosocial.png' width='28px'><span style='padding-left: 5%'></span>Seguro Social</a></li>"+
-            "</ul>"+
-        "</li>"+
-    "</ul>" );
+        "<li><a href='../../html/nutricion/nutricion.html' ><i><img src='../../images/nutricion/nutricion.png' width='28px'></i><span style='padding-left: 5%'></span>Nutrición</a></li>");
   //DATOS DE LA CABECERA izquierdA
 $("#divheaderizquierda").html( "<span class='line'></span>"+"<span class='line'></span>"+"<span class='line'></span>");
   //DATOS DE LA CABECERA titulo

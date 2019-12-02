@@ -1,7 +1,7 @@
 <?php
 $server = "localhost";
 $usuario = "root";
-$password = "/1LwU4caFTN5mSkfzr2V";
+$password = "nomejoda";
 $db = "sysmed";
 $result = mysqli_connect($server, $usuario, $password, $db);
 if (mysqli_connect_errno()) {  

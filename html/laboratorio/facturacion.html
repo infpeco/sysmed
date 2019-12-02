@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">    
+  <title>Laboratorio</title>
+  <!-- Styles -->
+  <link href="../../css/lib/font-awesome.min.css" rel="stylesheet">
+  <link href="../../css/lib/themify-icons.css" rel="stylesheet">
+  <link href="../../css/lib/menubar/sidebar.css" rel="stylesheet">
+  <link href="../../css/lib/bootstrap.min.css" rel="stylesheet">
+  <link href="../../css/style.css" rel="stylesheet">
+  <script src="../../js/lib/jquery.min.js"></script>
+  <script src="../../js/lib/jquery.tmpl.js"></script>
+  
+  <link rel="stylesheet" href="../../css/lib/style2.css">
+    <!-- PROPIO -->
+  <link rel="stylesheet" href="../../css/laboratorio/submodulos.css">
+  <link rel="stylesheet" href="../../css/laboratorio/efectosespeciales.css">
+  <script src = " ../../js/laboratorio/sweetalert.min.js "> </script>
+  <script src = " ../../js/laboratorio/angular.min.js "> </script>
+  
+
+</head>
+
+<body style="position:absolute; height:auto; width:100%;">
+  <!--MENU DE LA PAGINA-->
+  <div class="sidebar sidebar-hide-to-small sidebar-shrink sidebar-gestures" >
+    <div class="nano " >
+      <div class="nano-content" style="font-family: Bahnschrift SemiBold" id="divmenu" >
+      </div>
+    </div>
+  </div>
+  <!--HEADER O CABECERA DE LA PAGINA-->
+  <div class="header">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="float-left"><!--PARTE IZQUIERDA DE LA PAGINA-->
+           <div class="hamburger sidebar-toggle" id="divheaderizquierda" ></div> 
+         </div>
+         <div style="padding-left: 1%; display: inline;" id="divheadertitulo"><!--TITULO DE LA PAGINA--></div>
+         <div class="float-right" id="divheadersalir"><!--PARTE DERECHA DE LA PAGINA--></div>
+       </div>
+     </div>
+   </div>
+ </div>
+ <!--CUERPO DEL DOCUMENTO-->
+ <div class="content-wrap">
+  <div class="container-fluid">
+    <div class="row" > 
+      <div class="col-lg-12" >  
+        <div class="card" style="height:100%!important;">
+          <!--SECCION  DE LOS BOTONES GENERALES-->
+          <section  class="main-content"> <!--BOTONES GENERALES-->
+            <div class="tab" id="botonessubmodfac" ></div><br>
+          </section>
+          <!--SECCION  DE LAS CASILLAS GENERALES-->
+          <section id="datosgeneralesfac"></section><!--DATOS GENERALES DE FACTURACION-->
+          <!--SECCION  DEL TAB COMBO-->
+          <section >
+            <div class="tabcombo" id="tabbotonesfac"></div>
+            <!-- DATOS PRINCIPALES -->
+            <div id="datosprincipalesfac" class="tabcontent" style="display: block;"></div>
+            <!-- CONDICION DE PAGO -->
+            <div id="condicionespagofac" class="tabcontent" style="padding-left:3%; padding-top:3%">
+              <div id="totalpagado"></div>
+           <div id="formapago" ng-app="">
+          <table style="width: 100%"><tbody>
+              <tr><td style="text-align: left; width: 20%" colspan="1"> 
+                <label class="formato container">
+                  <input type="checkbox"  id="chkefectivo" value="efectivo" ng-model="efectivo" >Efectivo<span class="checkbox"></label>
+                </td><td style="text-align: left; width: 40%" colspan="2">
+              <div ng-show="efectivo" style="display: inline; ">
+                <label><h5>Cantidad</h5></label>
+              <input type="text" onkeypress="return validarnumeros(event)"  class="form-control" id="canefectivo" style="width:20%;display: inline">
+            </div></td></tr>
+              <tr>
+                <td style="text-align: left;width: 20%" colspan="1">
+                <label class="formato container" >
+                  <input type="checkbox"  id="chktcredito" value="tarjetacredito" ng-model="tarjetacredito" colspan="1">Tarjeta Crédito<span class="checkbox"></label>
+                </td>
+                <td style="text-align: left;width: 40%" colspan="1">
+             <div ng-show="tarjetacredito" style="display: inline; ">
+              <label ><h5>Cantidad</h5></label>
+          <input type="text" onkeypress="return validarnumeros(event)" class="form-control" id="cantcredito" style="width: 50%; display: inline"> </div></td>
+          <td style="text-align: left;width: 40%" colspan="1">
+            <div ng-show="tarjetacredito" style="display: inline; ">
+         <label ><h5>Número</h5></label>
+        <input type="text" onkeypress="return validarnumeros(event)"  class="form-control" id="numtcredito" style="width: 50%; display: inline"></div>
+              </td></tr>
+              <tr><td style="text-align: left; width: 20%">
+                <label class="formato container">
+                  <input type="checkbox"  id="chktdedito" value="tarjetadebito" ng-model="tarjetadebito" colspan="1">Tarjeta Débito<span class="checkbox"></label>
+         </td>
+         <td style="text-align: left;width: 40%" colspan="1">
+            <div ng-show="tarjetadebito" style="display: inline; ">
+              <label ><h5>Cantidad</h5></label>
+        <input type="text" onkeypress="return validarnumeros(event)"  class="form-control" id="cantdebito" style="width: 50%; display: inline"  >
+        </div> </td>
+        <td style="text-align: left;width: 40%" colspan="1">
+        <div ng-show="tarjetadebito" style="display: inline; ">
+        <label><h5>Número</h5></label>
+        <input type="text" onkeypress="return validarnumeros(event)"  class="form-control" id="numtdebito" style="width: 50%; display: inline"  >
+      </div></td></tr>
+              <tr><td style="text-align: left; width: 20%">
+                <label class="formato container" >
+                  <input type="checkbox"  id="chkcheque" value="cheque" ng-model="cheque" colspan="1" >Cheque<span class="checkbox"></label></td>
+     <td style="text-align: left;width: 40%" colspan="1">
+            <div ng-show="cheque" style="display: inline; ">
+              <label ><h5>Cantidad</h5></label>
+        <input type="text" onkeypress="return validarnumeros(event)"  class="form-control" id="cancheque" style="width: 50%; display: inline"></div></td>
+        <td style="text-align: left;width: 40%" colspan="1">
+        <div ng-show="cheque" style="display: inline; ">
+        <label ><h5>Número</h5></label>
+        <input type="text" onkeypress="return validarnumeros(event)"  class="form-control" id="numcheque" style="width: 50%; display: inline"></div>
+              </td></tr>
+            </tbody>
+          </table>
+      </div>
+          <div style="padding-bottom: 2%;"></div></div>
+            <!--Botones-->
+        </section>
+        <section style="text-align: right;display: inline;" id="botonesgenerales"></section>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<!-- jquery vendor -->
+<script src="../../js/lib/jquery.min.js"></script>
+<script src="../../js/lib/jquery.nanoscroller.min.js"></script>
+<!-- nano scroller -->
+<script src="../../js/lib/menubar/sidebar.js"></script>
+<script src="../../js/lib/preloader/pace.min.js"></script>
+<!-- sidebar -->
+<script src="../../js/lib/bootstrap.min.js"></script>
+<script src="../../js/scripts.js"></script>
+<script language="javascript"  src="../../js/menu/menumodulos.js"></script>
+<!-- PROPIO -->
+<script language="javascript"  src="../../js/laboratorio/contenido_laboratorio.js"></script>
+<script language="javascript"  src="../../js/laboratorio/funciones_facturacion.js"></script>
+<script language="javascript"  src="../../js/laboratorio/funciones_especiales.js"></script>
+</body>
+</html>

@@ -1,12 +1,135 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <meta charset="utf-8">    
+    <title>Focus Admin: Admin UI</title>
+    <!-- Styles -->    
+    <link href="../../css/style-tab.css" rel="stylesheet"></link>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link href="../../css/lib/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/lib/themify-icons.css" rel="stylesheet">
+    <link href="../../css/lib/menubar/sidebar.css" rel="stylesheet">
+    <link href="../../css/lib/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/style.css" rel="stylesheet">
+    <link href="/open-iconic/font/css/open-iconic-bootstrap.css" rel="stylesheet">
+
+
+    <!-- SCRIPT PARA LAS PESTAÑAS  -->
+    <script src="../../js/registro/tabs.js"></script>  
+
+    <!-- SCRIPT PARA CARGAR FORMULARIO EN LA SECCIONES  -->
+    <script src="../../js/registro/formulario-Doctor.js"></script>
+
+    
+
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
+
+    <script src="../../js/registro/Doctor.js"></script>
+    <script src="../../js/registro/Empleado.js"></script>
+    <script src="../../js/registro/Enfermera.js"></script>
+    <script src="../../js/registro/Paciente.js"></script>
+    <link rel="stylesheet" href="../../css/lib/style2.css">   
 </head>
-<body>
-    <h1>Falta tu Ronaldo</h1>
+
+<body style="position:absolute; height:auto; width:100%;">
+
+  
+    <!--MENU DE LA PAGINA-->
+    <div class="sidebar sidebar-hide-to-small sidebar-shrink sidebar-gestures" >
+        <div class="nano">
+            <div class="nano-content" style="font-family: Bahnschrift SemiBold" id="divmenu">
+         </div>
+    </div>
+</div>
+
+<!--HEADER O CABECERA DE LA PAGINA-->
+<div class="header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="float-left"><!--PARTE IZQUIERDA DE LA PAGINA-->
+                 <div class="hamburger sidebar-toggle" id="divheaderizquierda" ></div> 
+            </div>
+            <div style="padding-left: 1%; display: inline;" id="divheadertitulo"><!--TITULO DE LA PAGINA--></div>
+            <div class="float-right" id="divheadersalir"><!--PARTE DERECHA DE LA PAGINA--></div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+
+ <!--CUERPO DEL DOCUMENTO EL MODUCLO COMPLETO-->
+ <div class="content-wrap">
+  <div class="container-fluid">
+    <div class="row"> 
+      <div class="col-lg-12"> 
+
+
+        <!-- PESTAÑAS DEL MODULO -->
+        <div class="tab-hor">
+
+          <!-- AGREGAR UN BOTON POR CADA SECCION  -->
+          <button class="tablinks" onclick="openTab(event, 'pest-1')">Médicos</button>
+          <button class="tablinks" onclick="openTab(event, 'pest-2')">Empleado</button>
+          <button class="tablinks" onclick="openTab(event, 'pest-3')">Paciente</button>
+          <button class="tablinks" onclick="openTab(event, 'pest-4')">Enfermeras</button>
+
+          
+          
+      </div>
+
+      
+
+
+
+
+
+          <!-- UN <div> PARA CADA PESTAÑA-->
+          <div id="pest-1" class="tabcontent">  
+            <!-- El contenido de la pestaña 1 se carga desde formulario-plantilla.js 
+            funcion mostrarPestana_1  -->
+          </div>
+
+          <div id="pest-2" class="tabcontent">
+            <!-- El contenido de la pestaña 2 se carga desde formulario-plantilla.js 
+            funcion mostrarPestana_2  -->
+          </div>
+
+          <div id="pest-3" class="tabcontent">
+            <!-- El contenido de la pestaña 3 se carga desde formulario-plantilla.js 
+            funcion mostrarPestana_3  -->
+          </div>
+
+          <div id="pest-4" class="tabcontent">
+            <!-- El contenido de la pestaña 3 se carga desde formulario-plantilla.js 
+            funcion mostrarPestana_3  -->
+          </div>
+
+
+       
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<script src="../../js/lib/jquery.min.js"></script>
+<script src="../../js/lib/jquery.nanoscroller.min.js"></script>
+<!-- nano scroller -->
+<script src="../../js/lib/menubar/sidebar.js"></script>
+<script src="../../js/lib/preloader/pace.min.js"></script>
+<!-- sidebar -->
+<script src="../../js/lib/bootstrap.min.js"></script>
+
+<!-- <script src="../../js/form-pacientes.js"></script> -->
+
+<script src="../../js/menu/menumodulos.js"></script>
+    
+
 </body>
 </html>

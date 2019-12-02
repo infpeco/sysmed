@@ -1,0 +1,960 @@
+<section id="botonesgenfac">
+	<button  id="btnmantenimiento" onclick="abrirmantenimiento()"><b>Mantenimiento</b></button>
+<button  id="btnfacturacion" onclick="abrirfacturacion()" style="background-color: #5772FE;"><b>Facturación</b></button>
+<button  id="btnresultados" onclick="abrirresultados()"><b>Resultados</b></button>
+<button  id="btnconsulta" onclick="abrirconsulta()"><b>Consulta Resultados</b></button>
+</section>
+
+<section id="botonesgenmu">
+<button  id="btnmantenimiento" onclick="abrirmantenimiento()"><b>Mantenimiento</b></button>
+<button  id="btnfacturacion" onclick="abrirfacturacion()" ><b>Facturación</b></button>
+<button  id="btnresultados" onclick="abrirresultados()" style="background-color: #5772FE;"><b>Resultados</b></button>
+<button  id="btnconsulta" onclick="abrirconsulta()"><b>Consulta Resultados</b></button>
+</section>
+
+<section id="botonesgenman">
+<button  id="btnmantenimiento" onclick="abrirmantenimiento()" style="background-color: #5772FE;"><b>Mantenimiento</b></button>
+<button  id="btnfacturacion" onclick="abrirfacturacion()" ><b>Facturación</b></button>
+<button  id="btnresultados" onclick="abrirresultados()"><b>Resultados</b></button>
+<button  id="btnconsulta" onclick="abrirconsulta()"><b>Consulta Resultados</b></button>
+</section>
+
+<section id="botonescon">
+<button  id="btnmantenimiento" onclick="abrirmantenimiento()" ><b>Mantenimiento</b></button>
+<button  id="btnfacturacion" onclick="abrirfacturacion()" ><b>Facturación</b></button>
+<button  id="btnresultados" onclick="abrirresultados()"><b>Resultados</b></button>
+<button  id="btnconsulta" onclick="abrirconsulta()" style="background-color: #5772FE;"><b>Consulta Resultados</b></button>
+</section>
+
+
+<!--DATOS MUESTRAS-->
+<section id="contenido_muestra" >
+	<h2>Registro de Muestra</h2><br>
+	<table  style="width: 100%" ><tbody><tr>
+     <td style="text-align: left; width: 50%" colspan="2"><!--Codigo-->
+          <label ><h5 id="labcodmue" style="display:none" >Código</h5></label>
+          <input type="text" id="idmuestra" class="form-control" onkeypress="return validarnumeros(event)" style="width: 30% ;display:none" >
+        <!--Boton buscar--><div style="padding-left:6px; display: inline;"></div>
+  		<button type="submit"  class="btn btn-secondary py-2 px-2" id="btnbuscar" data-target="#modalmuestra" data-toggle="modal" onclick="consultageneralmuestra()" style="display: inline;">
+       <img src="../../images/laboratorio/botones/buscar.png" width="20px"></button>
+  <!-- Modal CONTENIDO DE CONSULTA MUESTRA -->
+  <div class="modal fade" id="modalmuestra" role="dialog" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-lg" style="max-width:90% !important; width: 90%!important">
+      <!-- Modal content-->
+      <div class="modal-content" >
+        <div class="modal-header">
+          <h4 class="modal-title" style="text-align: right !important;"><strong>Muestras registradas</strong></h4>
+        </div>
+        <div class="modal-body" >
+          <div>
+          <input type="text"id="busquedamuestra" onkeypress="return busquedaentermuestra(event)"
+          onkeyup="return busquedagenmuestra(event)" class="form-control" style="width:50%;display:inline" placeholder="Presionar la tecla Enter para buscar." >
+      <!--Boton buscar--><div style="padding-left:6px; display: inline;"></div>
+      </div><br>
+          <table style="width: 100%"><thead class="thead-dark" ><tr>
+  <th  style="text-align:center; width: 5%;background-color: #848484 ; color: black;font-size:16px; height: 40px"><b> CÓDIGO</b></th> 
+  <th scope="col" style="text-align:center; width: 15%;background-color: #848484 ; color: black;font-size:16px"><b>NOMBRE</b></th> 
+  <th  style="text-align:center; width: 15%;background-color: #848484 ; color: black;font-size:16px"><b>DESCRIPCIÓN</b></th> 
+  <th  style="text-align:center; width: 15%;background-color: #848484 ; color: black  ;font-size:16px"><b>DEPARTAMENTO</b></th> 
+  <th  style="text-align:center; width: 15%;background-color: #848484 ; color: black  ;font-size:16px"><b>PRUEBA</b></th> 
+  <th scope="col" style="text-align:center; width: 6%;background-color: #848484 ; color: black;font-size:16px "><b>MÍNIMO</b></th>
+  <th scope="col" style="text-align:center; width: 6%;background-color: #848484 ; color: black;font-size:16px "><b>MÁXIMO</b></th>
+  <th scope="col" style="text-align:center; width: 8%;background-color: #848484 ; color: black ;font-size:16px" ><b>U.MEDIDA</b></th>
+  <th scope="col" style="text-align:center; width: 10%;background-color: #848484 ; color: black ;font-size:16px" ><b>ESTADO</b></th>
+  <th scope="col" style="text-align:center; width: 5%;background-color: #848484 ; color: black "></th>
+   </tr></thead>
+            <tbody id="tablaconsultamuestra"></tbody></table>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-secondary" data-dismiss="modal" onclick="limpiarconsultageneralmuestra()" style="color: black!important"><strong>Salir</strong></button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+    </td>
+  		<td style="text-align: left; width: 50%" colspan="2"></td></tr>
+         <tr><td style="text-align: left; width: 50%" colspan="2"><!--Nombre-->
+          <label><h5>Nombre</h5></label>
+          <input type="text"id="nommuestra" class="form-control" onkeypress="return validarletras(event)" style="width: 60% ;display:inline ;" ></td>
+          <td style="text-align: left; width: 50%" colspan="2"><!--Descripción-->
+          	<label ><h5>Descripción</h5></label>
+          <input type="text" id="detmuestra" class="form-control" onkeypress="return validarletras(event)"  style="width: 70% ;display:inline ;"></td></tr>
+              <tr><td style="text-align: left; width: 50%" colspan="2"><!--Departamento-->
+        <label><h5>Departamento</h5></label>
+        <select name="" id="departamentom" class="form-control"style="width: 50% ;display:inline "></select></td>
+          <td style="text-align: left; width: 50%" colspan="2"><!--Prueba-->
+        <label><h5>Prueba</h5></label>
+        <select name="" id="prueba" class="form-control"style="width: 50% ;display:inline ">
+           <option value="0">-Seleccionar el departamento-</option>
+        </select></td></tr>
+           <tr><td style="text-align: left; width: 25%" colspan="1" ><!--Valor Mínimo-->
+          <label><h5>Valor Mínimo</h5></label>
+          <input type="text" id="vminimo" class="form-control" onkeypress="return validarnumeros(event)"  style="width: 40% ;display:inline ;" ></td>
+          <td style="text-align: left; width: 25%"colspan="1"><!--Valor Máximo-->
+          	<label ><h5>Valor Máximo</h5></label>
+          <input type="text" class="form-control" id="vmaximo" onkeypress="return validarnumeros(event)" style="width: 40% ;display:inline ;"></td>
+          <td style="text-align: left; width: 25%"colspan="1"><!--Valor Mínimo-->
+          <label><h5>U. Medida</h5></label>
+          <select name="" id="umedida" class="form-control"style="width: 55% ;display:inline ">
+            <option value="1">-Seleccionar-</option></select></td>
+          <td style="text-align: left; width: 25%"colspan="1"><!--Estado-->
+          	<label><h5>Estado</h5></label>
+          <select class="form-control" id="estmuestra"style="width: 50% ;display:inline"><option value="1" selected>Activo</option> <option value="0">Desactivo</option></select></td>
+           </tr></tbody></table>
+           <div style="text-align: right;"><br><br><br>
+        <button type="submit" id="btnmodificarmuestra" class="btn btn-secondary py-2 px-4" style="display: none;" onclick="modificar_muestra()"><b style="color: black; font-size: 20px">Modificar</b></button>
+        <button type="submit" id="btnguardarmuestra" class="btn btn-secondary py-2 px-4" style="display: inline;"><b style="color: black;font-size: 20px" onclick="registrar_muestra()">Guardar</b></button></div>
+</section>
+
+<!--DATOS PRUEBA-->
+<section id="contenido_prueba" >
+	<h2>Registro de Prueba</h2><br>
+	<table style="width: 100%" border="0"><tbody><tr>
+		<td id="tdcodpru" style="text-align: left;width: 5%">
+		<!--codigo-->
+           <label ><h5 id="labcodpru" style="display:none" >Código</h5></label>
+          <input type="text"id="idprueba" onkeypress="return validarnumeros(event)" class="form-control" style="width:50%;display:none;" >
+  		<!--Boton buscar--><div style="padding-left:6px; display: inline;"></div>
+  		<button type="submit"  class="btn btn-secondary py-2 px-2" id="btnbuscar"> <img src="../../images/laboratorio/botones/buscar.png" width="20px" data-target="#modalprueba" data-toggle="modal" onclick="consultageneralprueba()"></button>
+      <!-- Modal CONTENIDO DE CONSULTA PRUEBA -->
+  <div class="modal fade" id="modalprueba" role="dialog" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" style="text-align: right !important;"><strong>Pruebas registradas</strong></h4>
+        </div>
+        <div class="modal-body" >
+          <div>
+          <input type="text"id="busquedaprueba" onkeypress="return busquedaenterprueba(event)"
+          onkeyup="return busquedagenprueba(event)" class="form-control" style="width:50%;display:inline" placeholder="Presionar la tecla Enter para buscar." >
+      <!--Boton buscar--><div style="padding-left:6px; display: inline;"></div></div><br>
+          <table style="width: 100%"><thead class="thead-dark" ><tr>
+  <th  style="text-align:center; width: 10%;background-color: #848484 ; color: black;height: 35px  ;font-size:16px"><b>CÓDIGO</b></th> 
+  <th scope="col" style="text-align:center; width: 40%;background-color: #848484 ; color: black;font-size:16px"><b>NOMBRE</b></th> 
+  <th scope="col" style="text-align:center; width: 10%;background-color: #848484 ; color: black;font-size:16px "><b>ESTADO</b></th>
+  <th scope="col" style="text-align:center; width: 30%;background-color: #848484 ; color: black ;font-size:16px" ><b>DEPARTAMENTO</b></th>
+  <th scope="col" style="text-align:center; width: 10%;background-color: #848484 ; color: black "></th>
+   </tr></thead>
+            <tbody id="tablaconsultaprueba"></tbody></table>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-secondary" data-dismiss="modal" onclick="limpiarconsultageneralprueba()" style="color: black!important"><strong>Salir</strong></button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+    </td> 
+          <td style="text-align: left; width: 35%"><!--nombre-->
+          	<label><h5>Nombre</h5></label>
+          <input type="text"  id="nomprueba"onkeypress="return validarletras(event)" class="form-control" style="width:65%;display:inline" ></td>
+        	<td style="text-align: left;width: 35%">
+        		<!--Departamento-->
+        	<label><h5>Departamento</h5></label>
+          <select class="form-control" id="departamento"style="width: 50% ;display:inline "></select></td></tr>
+          <tr><td style="text-align: left;" colspan="3">
+          	<!--Estado--><label><h5>Estado</h5></label>
+          <select class="form-control" id="estprueba"style="width: 20% ;display:inline"><option value="1" selected>Activo</option> <option value="0">Desactivo</option></select></td>
+          </tr></tbody></table>
+          <div style="text-align: right;"><br><br><br>
+        <button type="submit" id="btnmodificarprueba" class="btn btn-secondary py-2 px-4" style="display: none;"onclick="modificar_prueba()" ><b style="color: black; font-size: 20px">Modificar</b></button>
+        <button type="submit" id="btnguardarprueba" class="btn btn-secondary py-2 px-4" style="display: inline;" onclick="registrar_prueba()"><b style="color: black;font-size: 20px">Guardar</b></button></div>
+</section>
+
+<!--DATOS UMEDIDA-->
+<section id="contenido_umedida" >
+	<h2>Registro de Unidad de Medida</h2><br>
+	<table border="0" style="width: 100%"><tbody>
+            <tr><td id="tdcodmed" style="text-align: left; width: 5%">
+            	<!--codigo-->
+            	<label ><h5 id="labcodmed" style="display:none" >Código</h5></label>
+          <input type="text" id="idumedida" onkeypress="return validarnumeros(event)" class="form-control" id="idprueba" style="width:50%;display:none;" >
+  		<!--Boton buscar--><div style="padding-left:6px; display: inline;"></div>
+  		<button type="submit"  class="btn btn-secondary py-2 px-2" id="btnbuscar"> <img src="../../images/laboratorio/botones/buscar.png" width="20px"data-target="#modalumedida" data-toggle="modal" onclick="consultageneralumedida()"></button>
+      <!-- Modal CONTENIDO DE CONSULTA PRUEBA -->
+  <div class="modal fade" id="modalumedida" role="dialog" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-lg" style="max-width:90% !important; width: 90%!important">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" style="text-align: right !important;"><strong>Unidades de medidas registradas</strong></h4>
+        </div>
+        <div class="modal-body" >
+          <div>
+          <input type="text"id="busquedaumedida" onkeypress="return busquedaenterumedida(event)"
+          onkeyup="return busquedagenumedida(event)" class="form-control" style="width:50%;display:inline" placeholder="Presionar la tecla Enter para buscar." >
+      <!--Boton buscar--><div style="padding-left:6px; display: inline;"></div>
+      </div><br>
+          <table style="width: 100%"><thead class="thead-dark" ><tr>
+  <th  style="text-align:center; width: 10%;background-color: #848484 ; color: black;height: 35px  ;font-size:16px"><b>CÓDIGO</b></th> 
+  <th scope="col" style="text-align:center; width: 30%;background-color: #848484 ; color: black;font-size:16px"><b>NOMBRE</b></th> 
+  <th scope="col" style="text-align:center; width: 10%;background-color: #848484 ; color: black;font-size:16px "><b>ABREVIATURA</b></th>
+  <th scope="col" style="text-align:center; width: 30%;background-color: #848484 ; color: black ;font-size:16px" ><b>DESCRIPCIÓN</b></th><th scope="col" style="text-align:center; width: 10%;background-color: #848484 ; color: black ;font-size:16px" ><b>ESTADO</b></th>
+  <th scope="col" style="text-align:center; width: 10%;background-color: #848484 ; color: black "></th>
+   </tr></thead>
+            <tbody id="tablaconsultaumedida"></tbody></table>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-secondary" data-dismiss="modal" onclick="limpiarconsultageneralumedida()" style="color: black!important"><strong>Salir</strong></button>
+        </div>
+      </div>
+      
+    </div>
+  </div></td>
+          <td style="text-align: left;width: 40%"><!--nombre-->
+          <label><h5>Nombre</h5></label>
+          <input type="text"id="nomumedida" onkeypress="return validarletras(event)" class="form-control" id="idprueba" style="width:70%;display:inline" ></td>
+          <td style="text-align: left;width: 30%"><!--Abreviatura--><label>
+        	<h5>Abreviatura</h5></label>
+          <input type="text" id="abvumedida" onkeypress="return " class="form-control" id="idprueba" style="width:50%;display:inline" ></td>
+      	</tr>
+          <tr><td style="text-align: left;" colspan="2"><!--Descripcion-->
+          	<label><h5>Descripción</h5></label>
+          <input type="text" id="detumedida" onkeypress="return validarletras(event)" class="form-control" id="idprueba" style="width:70%;display:inline" ></td> 
+          <td style="text-align: left;"colspan="1"><!--Estado-->
+          <label><h5>Estado</h5></label>
+          <select class="form-control" id="estumedida"style="width: 50% ;display:inline"><option value="1" selected>Activo</option> <option value="0">Desactivo</option></select></td>
+          </tr></tbody></table>
+          <div style="text-align: right;"><br><br><br>
+        <button type="submit" id="btnmodificarumedida" class="btn btn-secondary py-2 px-4" style="display: none;"onclick="modificar_umedida()" ><b style="color: black; font-size: 20px">Modificar</b></button>
+        <button type="submit" id="btnguardarumedida" class="btn btn-secondary py-2 px-4" style="display: inline;" onclick="registrar_umedida()"><b style="color: black;font-size: 20px">Guardar</b></button></div>
+</section>
+
+<!--DATOS NCF-->
+<section id="contenido_ncf" >
+	<h2>Registro de Comprobantes Fiscales</h2><br>
+	<table  border="0" style="width: 100%"><tbody><tr>
+     <td id="tdcodncf" style="text-align: left; width: 5% !important" colspan="3"><!--Codigo-->
+          <label style="padding-right: 1%"><h5 id="labcodncf" style="display:none" >Código</h5></label>
+          <input type="text" id="idncf" class="form-control" onkeypress="return validarnumeros(event)" style="width: 15% ;display:none;" >
+        <!--Boton buscar--><div style="padding-left:6px; display: inline;"></div>
+  		<button type="submit"  class="btn btn-secondary py-2 px-2" id="btnbuscar"> <img src="../../images/laboratorio/botones/buscar.png" width="20px"data-target="#modalncf" data-toggle="modal" onclick="consultageneralncf()"></button>
+  <!-- Modal CONTENIDO DE CONSULTA NCF -->
+  <div class="modal fade" id="modalncf" role="dialog" data-keyboard="false" data-backdrop="static" >
+    <div class="modal-dialog modal-lg" style="max-width:90% !important; width: 90%!important">
+      <!-- Modal content-->
+      <div class="modal-content" >
+        <div class="modal-header">
+          <h4 class="modal-title" style="text-align: right !important;"><strong>Comprobantes fiscales registrados</strong></h4>
+        </div>
+        <div class="modal-body" >
+          <div>
+          <input type="text"id="busquedancf" onkeypress="return busquedaenterncf(event)"
+          onkeyup="return busquedagenncf(event)" class="form-control" style="width:50%;display:inline" placeholder="Presionar la tecla Enter para buscar." >
+      <!--Boton buscar--><div style="padding-left:6px; display: inline;"></div></div><br>
+          <table style="width: 100%"><thead class="thead-dark" ><tr>
+  <th  style="text-align:center; width: 10%;background-color: #848484 ; color: black;font-size:16px; height: 40px"><b> CÓDIGO</b></th> 
+  <th scope="col" style="text-align:center; width: 20%;background-color: #848484 ; color: black;font-size:16px"><b>NOMBRE</b></th> 
+  <th  style="text-align:center; width: 10%;background-color: #848484 ; color: black;font-size:16px"><b>ABREVIATURA</b></th> 
+  <th  style="text-align:center; width: 15%;background-color: #848484 ; color: black  ;font-size:16px"><b>FECHA VEN.</b></th> 
+  <th  style="text-align:center; width: 10%;background-color: #848484 ; color: black  ;font-size:16px"><b>CANTIDAD</b></th> 
+  <th scope="col" style="text-align:center; width: 10%;background-color: #848484 ; color: black;font-size:16px "><b>INICIAL</b></th>
+  <th scope="col" style="text-align:center; width: 10%;background-color: #848484 ; color: black;font-size:16px "><b>FINAL</b></th>
+  <th scope="col" style="text-align:center; width: 10%;background-color: #848484 ; color: black ;font-size:16px" ><b>ESTADO</b></th>
+  <th scope="col" style="text-align:center; width: 5%;background-color: #848484 ; color: black "></th>
+   </tr></thead>
+            <tbody id="tablaconsultancf"></tbody></table>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-secondary" data-dismiss="modal" onclick="limpiarconsultageneralncf()" style="color: black!important"><strong>Salir</strong></button>
+        </div>
+      </div>
+    </div>
+  </div></td></tr><tr>
+  		<td style="text-align: left; width: 35%" colspan="2"><!--Nombre-->
+          <label style="padding-right: 1%"><h5>Nombre</h5></label>
+          <input type="text"id="nomncf" class="form-control" onkeypress="return validarletras(event)" style="width: 70% ;display:inline ;" ></td>
+          <td style="text-align: left; width: 35%" colspan="1"><!--Descripción-->
+          	<label style="padding-right: 1%" ><h5>Abreviatura</h5></label>
+          <input type="text" id="abvncf" class="form-control"   style="width: 50% ;display:inline ;"></td></tr>
+      <tr><td style="text-align: left; width: 30%" ><!--Descripción-->
+          	<label style="padding-right: 1%"><h5>Fecha Ven.</h5></label>
+          <input type="date" id="fechancf" class="form-control" style="width: 60% ;display:inline ;"></td>
+          <td style="text-align: left; width: 35%" ><!--Valor Mínimo-->
+          <label style="padding-right: 1%"><h5>Primera secuencia</h5></label>
+          <input type="text" id="prisecncf" class="form-control" onkeypress="return validarnumeros(event)"  style="width: 40% ;display:inline ;" ></td>
+          <td style="text-align: left; width: 35%"><!--Valor Máximo-->
+          	<label style="padding-right: 1%"><h5>Última secuencia</h5></label>
+          <input type="text" class="form-control" id="ultsecncf" onkeypress="return validarnumeros(event)" style="width: 40% ;display:inline ;"></td></tr>
+          <tr><td style="text-align: left; width: 30%">
+          	<!--Valor Mínimo-->
+          <label style="padding-right: 1%" ><h5>Cantidad</h5></label>
+          <input type="text" class="form-control" id="cantidadncf" onkeypress="return validarnumeros(event)" style="width: 50% ;display:inline ;"></td>
+           <td style="text-align: left; width: 35%"><!--Estado-->
+          	<label style="padding-right: 1%"><h5>Estado</h5></label>
+          <select class="form-control" id="estncf"style="width: 50% ;display:inline"><option value="1" selected>Activo</option> <option value="0">Desactivo</option></select></td><td style="text-align: left; width: 35%"></tr>
+       </tbody></table>
+       <div style="text-align: right;"><br><br><br>
+        <button type="submit" id="btnmodificarncf" class="btn btn-secondary py-2 px-4" style="display: none;"onclick="modificar_ncf()" ><b style="color: black; font-size: 20px">Modificar</b></button>
+        <button type="submit" id="btnguardarncf" class="btn btn-secondary py-2 px-4" style="display: inline;" onclick="registrar_ncf()"><b style="color: black;font-size: 20px">Guardar</b></button></div>
+</section>
+
+<!--DATOS ARS-->
+<section id="contenido_ars" >
+	<h2>Registro de Seguro Social</h2><br>
+	<table border="0" style="width: 100%"><tbody><tr><td id="tdcodars" style="text-align: left; width: 5%"><!--codigo-->
+		<label ><h5 id="labcodars" style="display:none" >Código</h5></label>
+          <input type="text" id="idars" onkeypress="return validarnumeros(event)" class="form-control" id="idprueba" style="width:50%;display:none;" >
+  		<!--Boton buscar--><div style="padding-left:6px; display: inline;"></div>
+  		<button type="submit"  class="btn btn-secondary py-2 px-2" id="btnbuscar"> <img src="../../images/laboratorio/botones/buscar.png" width="20px" data-target="#modalars" data-toggle="modal" onclick="consultageneralars()"></button>
+      <!-- Modal CONTENIDO DE CONSULTA ARS -->
+  <div class="modal fade" id="modalars" role="dialog" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" style="text-align: right !important;"><strong>Seguros sociales registrados</strong></h4>
+        </div>
+        <div class="modal-body" >
+          <div>
+          <input type="text"id="busquedaars" onkeypress="return busquedaenterars(event)"
+          onkeyup="return busquedagenars(event)" class="form-control" style="width:50%;display:inline" placeholder="Presionar la tecla Enter para buscar." >
+      <!--Boton buscar--><div style="padding-left:6px; display: inline;"></div>
+     </div><br>
+          <table style="width: 100%"><thead class="thead-dark" ><tr>
+  <th  style="text-align:center; width: 20%;background-color: #848484 ; color: black;height: 35px  ;font-size:16px"><b>CÓDIGO</b></th> 
+  <th scope="col" style="text-align:center; width: 60%;background-color: #848484 ; color: black;font-size:16px"><b>NOMBRE</b></th> 
+  <th scope="col" style="text-align:center; width: 10%;background-color: #848484 ; color: black;font-size:16px "><b>ESTADO</b></th>
+  <th scope="col" style="text-align:center; width: 10%;background-color: #848484 ; color: black "></th>
+   </tr></thead>
+            <tbody id="tablaconsultaars"></tbody></table>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-secondary" data-dismiss="modal" onclick="limpiarconsultageneralars()" style="color: black!important"><strong>Salir</strong></button>
+        </div>
+      </div>
+      
+    </div>
+  </div></td>
+  		<td style="text-align: left; width: 40%"><!--nombre-->
+          	<label><h5>Nombre</h5></label>
+          <input type="text" id="nomars" onkeypress="return validarletras(event)" class="form-control"  style="width:70%;display:inline" ></td>
+          <td style="text-align: left; width: 30%"><!--Estado--><label><h5>Estado</h5></label>
+          <select class="form-control" id="estars"style="width: 50% ;display:inline"><option value="1" selected>Activo</option> <option value="0">Desactivo</option></select></td>
+          </tr></tbody></table>
+          <div style="text-align: right;"><br><br><br>
+        <button type="submit" id="btnmodificarars" class="btn btn-secondary py-2 px-4" style="display: none;"onclick="modificar_ars()" ><b style="color: black; font-size: 20px">Modificar</b></button>
+        <button type="submit" id="btnguardarars" class="btn btn-secondary py-2 px-4" style="display: inline;" onclick="registrar_ars()"><b style="color: black;font-size: 20px">Guardar</b></button></div>
+</section>
+<!--BOTONES GENERALES-->
+<section id="botonesgeneralesman"> <div class="form-group " style="display: inline;"><br><br>
+        <button type="submit" id="btnatras" class="btn btn-secondary py-2 px-4" style="display: inline;"><b style="color: black; font-size: 20px">Atrás</b></button>
+        <button type="submit" id="btnguardar" class="btn btn-secondary py-2 px-4" style="display: inline;"><b style="color: black;font-size: 20px" onclick="registrarDatosprueba()">Guardar</b></button>
+      </div></section>
+      <section id="tabbotonesman"> 
+      	<table border="0" style="width: 100%"><tbody><tr>
+              <td style="text-align: center; width: 20%">
+                <a onclick="abrirsubmodulomantenimiento('datosprueba')" style="color: black!important;cursor:pointer">
+                    <img src="../../images/laboratorio/prueba.png" style="width:100px; position: center;">
+                    <h2 style="font-size: 20px;"><b>Prueba</b></h2></a>
+              </td>
+              <td style="text-align: center;width: 20%">
+                <a onclick="abrirsubmodulomantenimiento('datosmuestra')" style="color: black!important;cursor:pointer">
+                    <img src="../../images/laboratorio/muestra.png" style="width:100px; position: center;">
+                    <h2 style="font-size: 20px;"><b>Muestra</b></h2></a>
+              </td>
+              <td style="text-align: center;width: 20%">
+               <a onclick="abrirsubmodulomantenimiento('datosunimedida')" style="color: black!important;cursor:pointer">
+                    <img src="../../images/laboratorio/unidadmedida.png" style="width:120px; position: center;">
+                    <h2 style="font-size: 20px;"><b>Unidad Medida</b></h2></a> 
+              </td>
+              <td style="text-align: center;width: 20%">
+               <a onclick="abrirsubmodulomantenimiento('datosars')" style="color: black!important;cursor:pointer">
+                    <img src="../../images/laboratorio/segurosocial.png" style="width:100px; position: center;">
+                    <h2 style="font-size: 20px;"><b>Seguro Social</b></h2></a> 
+              </td>
+              <td style="text-align: center;width: 20%">
+               <a onclick="abrirsubmodulomantenimiento('datosncf')" style="color: black!important;cursor:pointer">
+                    <img src="../../images/laboratorio/comprobantefiscal.png" style="width:100px; position: center;">
+                    <h2 style="font-size: 20px;"><b>Comprobante Fiscal</b></h2></a> 
+              </td>
+            </tr></tbody></table>
+</section>
+
+
+
+
+<!--DATOS FACTURACION-->
+<section id="botonesgeneralesman"> <div class="form-group " style="display: inline;"><br><br>
+        <button type="submit" id="btnatras" class="btn btn-secondary py-2 px-4" style="display: inline;"><b style="color: black; font-size: 20px">Atrás</b></button>
+        <button type="submit" id="btnguardar" class="btn btn-secondary py-2 px-4" style="display: inline;"><b style="color: black;font-size: 20px" onclick="registrarDatosprueba()">Guardar</b></button>
+      </div></section>
+<section id="datosgeneralesfac" >
+	<table border="0" style="width:100%;" id="tablageneral"><tbody>
+  <tr style="text-align:left">
+	<!--Codigo-->
+	<td colspan="0" style="text-align: left; width: 1%"><label><h5 id="labcodfac" style="display:none" >Código</h5></label>
+	 <input type="text" onkeypress="return validarnumeros(event)" class="form-control" id="idfactura" style="width:45%;display:none;" >
+	<!--Boton buscar--><div style="padding-left:6px; display: inline;"></div>
+	 <button type="submit"  class=" btn btn-secondary py-2 px-2" id="btnbuscar"> <img src="../../images/laboratorio/botones/buscar.png" width="20px"></button></td>
+	 <!--Numero-->
+	 <td colspan="1" style="text-align: left;width:25%"><label><h5>Número</h5></label>
+	 <input type="text" disabled class="desabilitado" id="numfactura" style="width: 64% ;display:inline ;"></td>
+	<!--Tipo Factura-->
+	<td ><label style="padding-right:5px"><h5>Tipo Fac.</h5></label>
+	<select class="form-control" id="tipofactura"style="width: 57% ;display:inline ">
+	<option value="1" selected>Aseguradora</option>
+	<option value="2">Privada</option>
+	 </select></td>
+	 <!--Fecha-->
+	<td colspan="1" style="text-align: left;width:25%"><label style="padding-right:5px"><h5>Fecha</h5></label>
+	<input type="date" class="form-control" id="fecha" style="width: 66% ;display:inline ;">
+	</td> </tr>  
+	<tr style="text-align:left">
+	 <!--ARS-->
+	<td colspan="1" style="text-align: left;width:25%"> <label><h5 >ARS</h5></label>
+	 <select name="" id="ars" class="form-control"style="width: 75% ;display:inline ">
+	 <option value="0">--Seleccionar-- </option>
+	 </select></td>
+	<!--tipo NCF-->
+	<td colspan="1" style="text-align: left;width:25%"><label style="padding-right:5px"><h5>NCF</h5></label>
+	<select name="" id="tiponcf" class="form-control"style="width:75%;display:inline ">
+	<option value="0">--Seleccionar-- </option>
+	</select></td>
+	<!--Numero NCF-->
+	<td colspan="1" style="text-align: left;width:25%"><label style="padding-right:5px"><h5>Num NCF</h5></label>
+	<input type="text" class="desabilitado" disabled id="numeroncf" style="width:56%;display:inline;" ></td>
+	<!--Fecha NCF-->
+	<td colspan="1" style="text-align:left; width:24%"><label style="padding-right:5px;"><h5 >FV</h5></label>
+	<input type="date" class="form-control" id="fechancf" style="width:78% ;display:inline;" disabled > </td>
+	 </tr><tr style="text-align:left">
+	 <!--Núm. Póliza-->
+	<td colspan="1" style="text-align: left;width:25%"> <label><h5 ># Póliza</h5></label>
+	 <input type="text" class="form-control" id="numpoliza" style="width:62%;display:inline;" ></td>
+	<!--Núm. Reclamación-->
+	<td colspan="1" style="text-align: left;width:25%"><label style="padding-right:5px"><h5># Reclamación</h5></label>
+	<input type="text" class="form-control" id="numreclamacion" style="width:42%;display:inline;" ></td>
+	<!--Monto  Reclamación-->
+	<td colspan="1" style="text-align: left;width:25%"><label style="padding-right:5px"><h5>Monto Recl.</h5></label>
+	<input type="text" disabled class="desabilitado" id="montoreclamacion" style="width:49%;display:inline;" ></td>
+	<!--Monto Cobertura-->
+	<td colspan="1" style="text-align:left; width:25%"><label style="padding-right:5px;"><h5 >Cobertura</h5></label>
+	<input type="text" class="form-control" id="montocobertura" style="width:53% ;display:inline;"> </td>
+	 </tr></tbody></table><br>
+</section>
+<section id="tabbotonesfac"><button class="tablinks" id="btndatosprincipales" onclick="capturardatossubmodulo('btncondicionespago');abrirsubmodulofacturacion('btndatosprincipales','datosprincipalesfac')" style=" background-color: #BDBDBD"><b>Datos Principales</b></button>
+              <button class="tablinks" id="btncondicionespago" onclick="capturardatossubmodulo('btndatosprincipales');
+              abrirsubmodulofacturacion('btncondicionespago','condicionespagofac')"><b>Condiciones de pago</b></button></section>
+<!--DATOS PRINCIPALES-->
+<section id="datosprincipalesfac">
+	<!--DATOS DEL PACIENTE Y DEL DOCTOR-->
+	<table style="width:100%"><tbody><tr >
+	<td style="text-align:left"><!--Paciente--> 
+	<label style="padding-right:5px;"><h5>Paciente</h5></label>
+	<input type="text" class="form-control" onkeypress="return validarnumeroiden(event),busquedapacientedetalle(event)" onkeyup="limpiarpacientedetalle(event)" style="width: 25%;display:inline" id="codpaciente"  placeholder="Precionar Enter">
+	<div style="padding-left:3px; display: inline;">
+	<input type="text" class="desabilitado" onkeypress="return validarletras(event)" style="width: 45% ;display:inline" id="nompaciente" disabled >
+	<div style="padding-left:6px; display: inline;">
+	<button type="submit"  class="btn btn-secondary " id="btnbuscar" data-target="#modalpacientefac" data-toggle="modal" onclick="consultageneralpaciente()"> <img src="../../images/laboratorio/botones/buscar.png" width="20px" ></button>
+         <!-- Modal CONTENIDO DE CONSULTA PRUEBA -->
+  <div class="modal fade" id="modalpacientefac" role="dialog" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" style="text-align: right !important;"><strong>Pacientes registradas</strong></h4>
+        </div>
+        <div class="modal-body" >
+          <div>
+          <input type="text"id="busquedapacientefac" onkeypress="return busquedaenterpaciente(event)"
+          onkeyup="return busquedagenpaciente(event)" class="form-control" style="width:50%;display:inline" placeholder="Presionar la tecla Enter para buscar." >
+      <!--Boton buscar--><div style="padding-left:6px; display: inline;"></div></div><br>
+          <table style="width: 100%"><thead class="thead-dark" ><tr>
+  <th  style="text-align:center; width: 10%;background-color: #848484 ; color: black;height: 35px  ;font-size:16px"><b>CÓDIGO</b></th> 
+  <th scope="col" style="text-align:center; width: 30%;background-color: #848484 ; color: black;font-size:16px"><b>NOMBRE</b></th> 
+  <th scope="col" style="text-align:center; width: 30%;background-color: #848484 ; color: black ;font-size:16px" ><b>APELLIDO</b></th>
+  <th scope="col" style="text-align:center; width: 20%;background-color: #848484 ; color: black ;font-size:16px" ><b>IDENTIFICACIÓN</b></th>
+  <th scope="col" style="text-align:center; width: 10%;background-color: #848484 ; color: black "></th>
+   </tr></thead>
+            <tbody id="tablaconsultapaciente"></tbody></table>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-secondary" data-dismiss="modal" onclick="limpiarconsultageneralpaciente()" style="color: black!important"><strong>Salir</strong></button>
+        </div>
+      </div>
+      
+    </div>
+  </div></td >
+	 <td style="text-align:left"><!--Medico-->
+	<label style="padding-right:5px;" ><h5 >Médico</h5></label>
+	<input type="text" class="form-control" id="codmedico"onkeypress="return validarnumeroiden(event),busquedamedicodetalle(event)" onkeyup="limpiarmedicodetalle(event)" style="width: 25%;display:inline"   placeholder="Precionar Enter">
+	<div style="padding-left:3px; display: inline;">
+	<input type="text" class="desabilitado" id="nommedico" onkeypress="return validarletras(event)"  style="width: 45% ;display:inline" disabled >
+	<div style="padding-left:6px; display: inline;">
+	<button type="submit" class="btn btn-secondary " id="btnbuscar" data-target="#modalmedicofac" data-toggle="modal" onclick="consultageneralmedico()"> <img src="../../images/laboratorio/botones/buscar.png" width="20px"></button>
+         <!-- Modal CONTENIDO DE CONSULTA MEDICO -->
+  <div class="modal fade" id="modalmedicofac" role="dialog" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" style="text-align: right !important;"><strong>Médicos registradas</strong></h4>
+        </div>
+        <div class="modal-body" >
+          <div>
+          <input type="text"id="busquedamedicofac" onkeypress="return busquedaentermedico(event)"
+          onkeyup="return busquedagenmedico(event)" class="form-control" style="width:50%;display:inline" placeholder="Presionar la tecla Enter para buscar." >
+      <!--Boton buscar--><div style="padding-left:6px; display: inline;"></div></div><br>
+          <table style="width: 100%"><thead class="thead-dark" ><tr>
+  <th  style="text-align:center; width: 10%;background-color: #848484 ; color: black;height: 35px  ;font-size:16px"><b>CÓDIGO</b></th> 
+  <th scope="col" style="text-align:center; width: 25%;background-color: #848484 ; color: black;font-size:16px"><b>NOMBRE</b></th> 
+  <th scope="col" style="text-align:center; width: 30%;background-color: #848484 ; color: black ;font-size:16px" ><b>APELLIDO</b></th>
+  <th scope="col" style="text-align:center; width: 25%;background-color: #848484 ; color: black ;font-size:16px" ><b>ESPECIALIDAD</b></th>
+  <th scope="col" style="text-align:center; width: 10%;background-color: #848484 ; color: black "></th>
+   </tr></thead>
+            <tbody id="tablaconsultamedico"></tbody></table>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-secondary" data-dismiss="modal" onclick="limpiarconsultageneralmedico()" style="color: black!important"><strong>Salir</strong></button>
+        </div>
+      </div>
+      
+    </div>
+  </div></td>
+	</tr></tbody></table><br>
+	<!--CASILLAS DEL DETALLE DE LA TABLA-->
+	<table  style="width: 100%;">
+	<tbody class="thead-dark" > <tr>
+	<td style="width: 15%"><button type="submit" style="display:inline" class="btn btn-secondary px-2 py-1" id="btnbuscar" data-target="#modalpruebafac" data-toggle="modal" onclick="consultageneralprueba()"> <img src="../../images/laboratorio/botones/prueba.png" width="20px"></button>
+         <!-- Modal CONTENIDO DE CONSULTA PRUEBA -->
+  <div class="modal fade" id="modalpruebafac" role="dialog" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" style="text-align: right !important;"><strong>Pruebas registradas</strong></h4>
+        </div>
+        <div class="modal-body" >
+          <div>
+          <input type="text"id="busquedapruebafac" onkeypress="return busquedaenterprueba(event)"
+          onkeyup="return busquedapruebadetalle(event)" class="form-control" style="width:50%;display:inline" placeholder="Presionar la tecla Enter para buscar." >
+      <!--Boton buscar--><div style="padding-left:6px; display: inline;"></div></div><br>
+          <table style="width: 100%"><thead class="thead-dark" ><tr>
+  <th  style="text-align:center; width: 10%;background-color: #848484 ; color: black;height: 35px  ;font-size:16px"><b>CÓDIGO</b></th> 
+  <th scope="col" style="text-align:center; width: 50%;background-color: #848484 ; color: black;font-size:16px"><b>NOMBRE</b></th> 
+  <th scope="col" style="text-align:center; width: 30%;background-color: #848484 ; color: black ;font-size:16px" ><b>DEPARTAMENTO</b></th>
+  <th scope="col" style="text-align:center; width: 10%;background-color: #848484 ; color: black "></th>
+   </tr></thead>
+            <tbody id="tablaconsultaprueba"></tbody></table>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-secondary" data-dismiss="modal" onclick="limpiarconsultageneralprueba()" style="color: black!important"><strong>Salir</strong></button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+	<div style="padding-left:6px; display: inline;">
+	<input type="text" class="form-control" style="width:65%;display:inline" id="codprueba"onkeypress="return validarnumeros(event)" placeholder="Código" onkeyup="return busquedapruebadetalle(event)" ></td> 
+	<td style="width: 30%"><input type="text" style="width: 100% ;display:inline " id="nomprueba" class="desabilitado" disabled placeholder="Nombre de la prueba" onkeypress="return validarletras(event)"></td> 
+	<td style="width: 10%"><input type="text" class="form-control" style="width: 100% ;display:inline " id="cantprueba" onkeyup="mulpreciocant()"onkeypress="return validarnumeros(event)" value="1.00"></td> 
+	<td style="width: 15%"><input type="text" class="form-control" style="width: 100% ;display:inline " id="precioprueba" placeholder="Precio" onkeyup="mulpreciocant()"onkeypress="return validarnumeros(event)"></td> 
+	<td style="width: 15%"><input type="text" class="desabilitado" style="width: 100% ;display:inline " id="montoprueba"  disabled></td> 
+	 <td style="width:15%; text-align:center;"><button type="submit" class="btn btn-secondary " id="btnagregar" onclick="buscarcodfila()">  <b style="color: black">Agregar</b></button> </td> 
+	</tr></tbody></table>
+	<div style="padding-bottom: 1%"></div>
+	<!--TABLA DEL DETALLE-->
+	<table  border="1" style="width: 100%; border-color: black;color:black; " id ="tablafacturacion" >
+	<thead class="thead-dark" ><tr>
+	<th  style="text-align:center; width: 15%;background-color: #848484 ; color: black;height: 35px  ;font-size:16px"><b>CÓDIGO</b></th> 
+	<th scope="col" style="text-align:center; width: 30%;background-color: #848484 ; color: black;font-size:16px"><b>PRUEBA</b></th> 
+	<th scope="col" style="text-align:center; width: 10%;background-color: #848484 ; color: black;font-size:16px "><b>CANTIDAD</b></th>
+	<th scope="col" style="text-align:center; width: 15%;background-color: #848484 ; color: black ;font-size:16px" ><b>PRECIO</b></th>
+	<th scope="col" style="text-align:center; width: 15%;background-color: #848484 ; color: black;font-size:16px "><b>MONTO</b></th>
+	<th scope="col" style="text-align:center; width: 15%;background-color: #848484 ; color: black "></th>
+	 </tr>
+	</thead>
+	<tbody  style="background-color: white;text-align: right; font-size: 16px;" id="tabladetallefactura"></tbody>
+	</table>
+<br>
+</section>
+<!--CONDICION PAGO-->
+<section id="condicionpago">
+	<table style="width: 100%"><tbody>
+              <tr><td > <!--Total a Facturar-->
+              <label><h5>Total a Facturar</h5></label>
+        <input type="text" disabled class="desabilitado" id="totalfacturar" style="width: 50%; display: inline" >
+        </td>
+        <td > <!--Total Recibido-->
+        <label style="padding-right: 3%" ><h5>Total Recibido</h5></label>
+        <input type="text" class="form-control" id="totalrecibido"onkeyup="total_devolver()" style="width: 51%; display: inline" >
+        </td>
+        <td style="text-align: left;" ><!--Total Devuelto-->
+        <label style="padding-right: 4%"><h5>Total Devuelto</h5></label>
+        <input type="text" disabled class="desabilitado" id="totaldevuelto" style="width: 50%; display: inline" >
+        </td></tr>
+        </tbody></table>
+        <label  style="display: inline; "><h5 style="padding-top: 1%"><b>Formas de pagos</b></h5></label>
+</section>
+
+
+
+
+
+
+<!--DATOS GENERALES resultado-->
+<section id="datosgeneralesres" >
+	<table  style="width:100%;" id="tablageneral"><tbody><tr style="text-align:left">
+ 	<!--Codigo-->
+ 	<td style="text-align:left;width:25%;"><label><h5>Código</h5></label>
+ 	 <input type="text" onkeypress="return validarnumeros(event)" class="form-control" id="idresultado" style="width:45%!important;display:inline !important;" >
+ 	<!--Boton buscar--><div style="padding-left:6px; display: inline;"></div>
+ 	 <button type="submit"  class="btn btn-secondary py-2 px-2" id="btnbuscarresultado"> <img src="../../images/laboratorio/botones/buscar.png" width="20px"></button></td>
+ 	<!--Codfactura-->
+ 	<td style="text-align:left;width:25%;"><label><h5>ID Factura</h5></label>
+ 	 <input type="text" onkeypress="return validarnumeros(event)" class="form-control" id="idfactura" style="width:40%!important;display:inline !important;" >
+ 	<!--Boton buscar--><div style="padding-left:6px; display: inline;"></div>
+ 	 <button type="submit"  class="btn btn-secondary py-2 px-2" id="btnbuscarfactura"> <img src="../../images/laboratorio/botones/buscar.png" width="20px"></button></td>
+ 	 <!--Numero-->
+ 	 <td style="text-align:left;width:25%;"><label><h5># Factura</h5></label>
+ 	 <input type="text" disabled class="desabilitado" id="numfactura" style="width: 50% !important;display:inline !important;"></td>
+ 	 <!--Fecha-->
+ 	<td style="text-align:left;width:25%;"><label style="padding-right:5px"><h5>Fecha</h5></label>
+ 	<input type="date" class="form-control" id="fecha" style="width: 66% !important;display:inline !important;">
+ 	</td> </tr></tr></tbody></table>
+ 	<table style="width:100%"><tbody><tr >
+ 	<td style="text-align:left;width:50%;"><!--Paciente--> 
+ 	<label style="padding-right:2%;"><h5>Paciente</h5></label>
+ 	<input type="text" disabled class="desabilitado" onkeypress="return validarnumeros(event)" style="width: 20%;display:inline" id="codpaciente" >
+ 	<div style="padding-left:1%; display: inline;">
+ 	<input type="text" disabled class="desabilitado" onkeypress="return validarletras(event)" style="width: 58% ;display:inline" id="nompaciente" >
+ 	<td style="text-align:left;width:50%;"><!--Medico-->
+ 	<label style="padding-right:2%;" ><h5 >Médico</h5></label>
+ 	<input type="text" disabled class="desabilitado" id="codmedico"onkeypress="return validarnumeros(event)" style="width: 20%;display:inline" id="codpaciente" >
+ 	<div style="padding-left:1%; display: inline;">
+ 	<input type="text" disabled class="desabilitado" id="nommedico" onkeypress="return validarletras(event)"  style="width: 58% ;display:inline" id="nompaciente" >
+ 	</tr></tbody></table><br>
+</section>
+<section id="tabbotones"></section>
+
+<!--BOTONES GENERALES-->
+<section id="botonesgeneralesres"> <div class="form-group " style="display: inline;"><br><br>
+        <button type="submit" id="btnatras" class="btn btn-secondary py-2 px-4" style="display: inline;"><b style="color: black; font-size: 20px">Atrás</b></button>
+        <button type="submit" id="btnguardar" class="btn btn-secondary py-2 px-4" style="display: inline;"><b style="color: black;font-size: 20px">Guardar</b></button>
+      </div></section>
+<section id="tabbotonesres"><button class="tablinks" id="btnhematologia" onclick="abrirsubmoduloresultado('btnhematologia','datoshematologia');" style=" background-color: #BDBDBD"><b>Hematología</b></button>
+              <button class="tablinks" id="btnuroanalisis" onclick="abrirsubmoduloresultado('btnuroanalisis','datosuroanalisis');"><b>Uroanálisis</b></button>
+              <button class="tablinks" id="btnpruebasespeciales" onclick="abrirsubmoduloresultado('btnpruebasespeciales','datospruebasespeciales');"><b>Pruebas Especiales</b></button>
+              <button class="tablinks" id="btncitoligiavaginal" onclick="abrirsubmoduloresultado('btncitoligiavaginal','datoscitoligiavaginal');"><b>Citología Vaginal</b></button>
+              <button class="tablinks" id="btnbiopsia" onclick="abrirsubmoduloresultado('btnbiopsia','datosbiopsia');" ><b>Biopsia</b></button>
+</section>
+
+
+
+<section id="contenido_hematologia">
+	<div style="padding-bottom: 1%"></div>
+	<table><tbody>
+ 	<th><td style="text-align: left;width: 65%"><!--Patólogo-->
+ 	<label style="padding-right:1%"><h5>Patólogo/a</h5></label>
+ 	<input type="text" id="idpatologohem" class="form-control" style="width: 15%;display:inline " >
+ 	<div style="padding-left:1%; display: inline;">
+ 	<input type="text" id="nompatologohem" class="form-control" style="width: 55%;display:inline " >
+ 	<div style="padding-left:1%; display: inline;">
+ 	<button type="submit"  class="btn btn-secondary py-2 px-2" id="btnbuscarpatologo"> <img src="../../images/laboratorio/botones/buscar.png" width="20px"></button></td>
+ 	<td style="text-align: left;width: 35%"><!--TIPO DE muestra-->
+ 	<label style="padding-right:1%"><h5>Tipo Muestra</h5></label>
+ 	<select name="" id="tipmuestrahem" class="form-control"style="width: 55% ;display:inline">
+ 	<option value="0" selected>--Seleccionar-- </option>
+ 	</select></td></th></tbody></table><br>
+ 	<table  style="width: 100%;">
+ 	<tbody class="thead-dark" > <tr>
+ 	<td style="width: 10%"><button type="submit" style="display:inline" class="btn btn-secondary px-1 py-1" id="btnbuscar"> <img src="../../images/laboratorio/botones/prueba.png" width="20px"></button>
+ 	<div style="padding-left:6px; display: inline;">
+ 	<input type="text" class="form-control" style="width:60%;display:inline" id="codigomuehem"onkeypress="return validarnumeros(event)" placeholder="ID"></td> 
+ 	<td style="width: 25%"><input type="text" class="form-control" style="width: 100% ;display:inline " id="nombremuehem" onkeypress="return validarletras(event)" placeholder="Nombre de la muestra"></td> 
+ 	<td style="width: 15%"><input type="text" class="form-control" style="width: 100% ;display:inline " id="resultadomuehem" onkeypress="return validarnumeros(event)" placeholder="Valor del resultado"></td> 
+ 	<td style="width: 10%"><input type="text" class="desabilitado" style="width: 100% ;display:inline " id="unidadmuehem" disabled></td> 
+ 	<td style="width: 10%"><input type="text" class="desabilitado" style="width: 100% ;display:inline " id="vminimomuehem"  disabled></td> 
+ 	<td style="width: 10%"><input type="text" class="desabilitado" style="width: 100% ;display:inline " id="vmaximomuehem"  disabled></td> 
+   <td style="width:10%; text-align:center;"><button type="submit" class="btn btn-secondary " id="btnagregarhem" onclick="buscarcodfila(this)">  <b style="color: black">Agregar</b></button> </td> 
+ 	</tr></tbody></table
+ 	><div style="padding-bottom: 1%"></div>
+ 	<table  border="1" style="width: 100%; border-color: black;color:black; " id ="tablahematologia" >
+ 	<thead class="thead-dark" ><tr>
+ 	<th  style="text-align:center; width: 10%;background-color: #848484 ; color: black;height: 35px !important ;font-size:16px"><b>CÓDIGO</b></th> 
+ 	<th scope="col" style="text-align:center; width: 25%;background-color: #848484 ; color: black;font-size:16px"><b>VALORES</b></th> 
+ 	<th scope="col" style="text-align:center; width: 15%;background-color: #848484 ; color: black;font-size:16px "><b>RESULTADO</b></th>
+ 	<th scope="col" style="text-align:center; width: 10%;background-color: #848484 ; color: black ;font-size:16px" ><b>UNIDAD</b></th>
+ 	<th scope="col" style="text-align:center; width: 10%;background-color: #848484 ; color: black;font-size:16px "><b>MÍNIMO</b></th>
+  <th scope="col" style="text-align:center; width: 10%;background-color: #848484 ; color: black;font-size:16px "><b>MÁXIMO</b></th>
+ 	<th scope="col" style="text-align:center; width: 10%;background-color: #848484 ; color: black "></th>
+ 	 </tr>
+ 	</thead>
+ 	<tbody  style="background-color: white;text-align: right; font-size: 16px;" id="tabladetallehem"></tbody>
+ 	</table><br>
+</section>
+
+
+
+
+<!--DATOS contenido_uroanalisis-->
+<section id="contenido_uroanalisis" >
+	 <div style="padding-bottom: 1%"></div>
+	<table border="0" style="width: 100%"><tbody>
+ 	<th><td style="text-align: left;"><!--Patólogo-->
+ 	<label style="padding-right:1%"><h5>Patólogo/a</h5></label>
+ 	<input type="text" id="idpatologouro" class="form-control" style="width: 10%;display:inline " >
+ 	<div style="padding-left:1%; display: inline;">
+ 	<input type="text" id="nompatologouro" class="form-control" style="width: 35%;display:inline " >
+ 	<div style="padding-left:1%; display: inline;">
+ 	<button type="submit"  class="btn btn-secondary py-2 px-2" id="btnbuscarpatologo"> <img src="../../images/laboratorio/botones/buscar.png" width="20px"></button></td>
+ 	</th></tbody></table><br>
+ 	<table  style="width: 100%; ">
+ 	<tbody class="thead-dark" > <tr>
+ 	<td style="width: 10%"><button type="submit" style="display:inline" class="btn btn-secondary px-1 py-1" id="btnbuscar"> <img src="../../images/laboratorio/botones/prueba.png" width="20px"></button>
+ 	<div style="padding-left:6px; display: inline;">
+ 	<input type="text" class="form-control" style="width:60%;display:inline" id="codigomueuro"onkeypress="return validarnumeros(event)" placeholder="ID"></td> 
+ 	<td style="width: 25%"><input type="text" class="form-control" style="width: 100% ;display:inline " id="nombremueuro" onkeypress="return validarletras(event)" placeholder="Nombre de la muestra"></td> 
+ 	<td style="width: 15%"><input type="text" class="form-control" style="width: 100% ;display:inline " id="resultadomueuro" onkeypress="return validarnumeros(event)" placeholder="Valor del resultado"></td> 
+ 	<td style="width: 10%"><input type="text" class="desabilitado" style="width: 100% ;display:inline " id="unidadmueuro" disabled></td> 
+ 	<td style="width: 10%"><input type="text" class="desabilitado" style="width: 100% ;display:inline " id="vminimomueuro"  disabled></td> 
+ 	<td style="width: 10%"><input type="text" class="desabilitado" style="width: 100% ;display:inline " id="vmaximomueuro"  disabled></td> 
+   <td style="width:10%; text-align:center;"><button type="submit" class="btn btn-secondary " id="btnagregaruro" onclick="buscarcodfila(this)">  <b style="color: black">Agregar</b></button> </td> 
+ 	</tr></tbody></table>
+ 	<div style="padding-bottom: 1%"></div>
+ 	<table  border="1" style="width: 100%; border-color: black;background-color:white;color:black; " id ="tablauroanalisis" >
+ 	<thead class="thead-dark" ><tr>
+ 	<th  style="text-align:center; width: 10%;background-color: #848484 ; color: black;height: 35px !important ;font-size:16px"><b>CÓDIGO</b></th> 
+ 	<th scope="col" style="text-align:center; width: 25%;background-color: #848484 ; color: black;font-size:16px"><b>VALORES</b></th> 
+ 	<th scope="col" style="text-align:center; width: 15%;background-color: #848484 ; color: black;font-size:16px "><b>RESULTADO</b></th>
+ 	<th scope="col" style="text-align:center; width: 10%;background-color: #848484 ; color: black ;font-size:16px" ><b>UNIDAD</b></th>
+ 	<th scope="col" style="text-align:center; width: 10%;background-color: #848484 ; color: black;font-size:16px "><b>MÍNIMO</b></th>
+  <th scope="col" style="text-align:center; width: 10%;background-color: #848484 ; color: black;font-size:16px "><b>MÁXIMO</b></th>
+ 	<th scope="col" style="text-align:center; width: 10%;background-color: #848484 ; color: black "></th>
+ 	 </tr>
+ 	</thead>
+ 	<tbody  style="background-color: white;text-align: right; font-size: 16px;" id="tabladetalleuro"></tbody>
+ 	</table><br>
+	</section>
+
+
+
+
+	<!--DATOS contenido_citologiavaginal-->
+<section id="contenido_citologiavaginal" >
+	<div style="padding-bottom: 1%"></div>
+	<!--DATOS GENERALES-->
+	<table style="width: 100%"><tbody><th><td style="text-align: left;width:60% "><!--Patólogo-->
+	<label style="padding-right:1%"><h5>Patólogo/a</h5></label>
+	<input type="text" id="idpatologocitvag" class="form-control" style="width: 15%;display:inline " >
+	<div style="padding-left:1%; display: inline;">
+	<input type="text" id="nompatologocitvag" class="form-control" style="width: 55%;display:inline " >
+	<div style="padding-left:1%; display: inline;">
+	<button type="submit"  class="btn btn-secondary py-2 px-2" id="btnbuscarpatologo"> <img src="../../images/laboratorio/botones/buscar.png" width="20px"></button></td>
+	<td style="text-align: left;width: 40%"><!--TIPO DE Citología-->
+	<label style="padding-right:1%"><h5>Tipo Citología</h5></label>
+	<select name="" id="tipmuestracitvag" class="form-control"style="width: 60% ;display:inline">
+	<option value="1" selected>--Seleccionar-- </option></select></td>
+	</td></th></tbody></table><br>
+	<table style="width: 100%;"><tbody>
+
+ 	<!--Valoración del Material-->
+ 	<tr ><td colspan="5"  style="text-align: left;" ><!--Valoración del Material-->
+ 	<label style="padding-left:1%;background-color:#A4A4A4;border:1px solid black; width:100%"><h5 style="font-weight: bold; display:inline;">Valoración del Material</h5></label></td></tr>
+ 	<tr ><td colspan="1" style="text-align: left;width: 20%;padding-bottom:1%">
+ 		<label class="formato container" style="display:inline"><input type="radio" name="radio" id="valoracion1"> Satisfactorio<span class="checkmark"></label></td> 
+ 	<td colspan="4" style="text-align: left;width: 80%;padding-bottom:1%">
+ 		<label class="formato container" style="display:inline"><input type="radio" name="radio" id="valoracion2" > Satisfactorio, pero limitado por:<span class="checkmark"></label>
+ 	<input type="text" id="valoracion2det" class="form-control" style="width: 50%;display:inline " ></td></tr> 
+ 	<tr><td style="text-align: left;width: 100%;padding-bottom:1%" colspan="5">
+ 		<label class="formato container"style="display:inline"><input type="radio"name="radio"  id="valoracion3" > Insatisfactorio, debido a:<span class="checkmark"></label> 
+ 	<input type="text" id="valoracion3det" class="form-control" style="width: 50%;display:inline " ></td></tr> 
+
+  <!--Presencia de Microorganismos-->
+  <tr ><td colspan="5"  style="text-align: left;width: 100%" ><!--Presencia de Microorganismos-->
+  <label style="padding-left:1%;background-color:#A4A4A4;border:1px solid black; width:100%"><h5 style="font-weight: bold;display:inline">Presencia de Microorganismos</h5></label></td></tr>
+  <tr><td style="text-align: left;width: 15%;padding-bottom:1%">
+  	<label class="formato container" style="display:inline"><input type="checkbox"  id="microorganismo1" >No presente<span class="checkbox"></label></td> 
+  <td  style="text-align: left;width: 25%;padding-bottom:1%">
+  	<label class="formato container" style="display:inline"><input type="checkbox"  id="microorganismo2" >Trichomonas vaginalis<span class="checkbox"></label></td>
+  <td  style="text-align: left;width: 15%;padding-bottom:1%">
+  	<label class="formato container" style="display:inline"><input type="checkbox"  id="microorganismo3" >Hongos<span class="checkbox"></label></td>
+  <td style="text-align: left;width: 25%;padding-bottom:1%">
+  	<label class="formato container" style="display:inline"><input type="checkbox"  id="microorganismo4" >Doderlein<span class="checkbox"></label></td>
+  <td style="text-align: left;width: 20%;padding-bottom:1%">
+  	<label class="formato container" style="display:inline"><input type="checkbox"  id="microorganismo5" >Cándida<span class="checkbox"></label></td></tr>
+  <tr><td colspan="2" style="text-align: left;padding-bottom:1%">
+  <label class="formato container" style="display:inline"><input type="checkbox"  id="microorganismo6" >Cambios en la flora vaginal sugestivos de vaginosis bacteriana<span class="checkbox"></label></td>
+  <td colspan="3" style="text-align: left;padding-bottom:1%">
+  <label class="formato container" style="display:inline"><input type="checkbox"  id="microorganismo7" >Cambios celulares asociados a Virus Herpes Simple<span class="checkbox"></label></td></tr>
+  <tr><td colspan="2" style="text-align: left;;padding-bottom:1%">
+  <label class="formato container" style="display:inline"><input type="checkbox"  id="microorganismo8" >Bacterias morfológicamente compatibles con Actinomices spp<span class="checkbox"></label></td>
+  <td colspan="3" style="text-align: left;padding-bottom:1%">
+  <label class="formato container" style="display:inline"><input type="checkbox"  id="microorganismo9" >Otro: bacterias inespecíficas<span class="checkbox"></label></td></tr>
+
+  <!--Hallazgos no Neoplásticos-->
+  <tr><td colspan="5"  style="text-align: left;" ><!--Hallazgos no Neoplásticos-->
+  <label style="padding-left:1%;background-color:#A4A4A4;border:1px solid black; width:100%"><h5 style="font-weight: bold;display:inline">Hallazgos no Neoplásticos </h5></label></td></tr>
+  <tr ><td colspan="2" style="text-align: left;width: 20%;padding-bottom:1%">
+  	<label class="formato container" style="display:inline"><input type="radio" name="radio2" id="hallazgo1" >No presente<span class="checkmark"></label></td> 
+  <td colspan="3" style="text-align: left;width: 80%;padding-bottom:1%">
+  	<label class="formato container" style="display:inline"><input type="radio" name="radio2" id="hallazgo2" > Cambios celulares reactivos asociados a inflamación<span class="checkmark"></label></td> 
+  </tr> <tr ><td colspan="2" style="text-align: left;width: 20%;padding-bottom:1%">
+  	<label class="formato container" style="display:inline"><input type="radio" name="radio2" id="hallazgo3" >Células endometriales<span class="checkmark"></label></td> 
+  <td colspan="3" style="text-align: left;width: 80%;padding-bottom:1%">
+  	<label class="formato container" style="display:inline"><input type="radio"  name="radio2"id="hallazgo4" > Cambios celulares reactivos asociados a Atrofia<span class="checkmark"></label></td> 
+  </tr> <tr><td colspan="2" style="text-align: left;width: 20%;padding-bottom:1%">
+  	<label class="formato container" style="display:inline"><input type="radio"name="radio2"  id="hallazgo5" >Cambios celulares reactivos refente a radiación<span class="checkmark"></label></td> 
+  <td colspan="3" style="text-align: left;width: 80%;padding-bottom:1%">
+  	<label class="formato container" style="display:inline"><input type="radio" name="radio2" id="hallazgo6" >Cambios celulares asociados a dispositivos intrauterino (DIU)<span class="checkmark"></label></td> 
+  </tr> <tr ><td colspan="2" style="text-align: left;width: 20%;padding-bottom:1%">
+  	<label class="formato container" style="display:inline"><input type="radio"name="radio2"  id="hallazgo7" >Celulares glandulares poshisterectomía<span class="checkmark"></label></td> 
+  <td colspan="3" style="text-align: left;width: 80%;padding-bottom:1%">
+  	<label class="formato container" style="display:inline"><input type="radio"  name="radio2"id="hallazgo8" >Otro<span class="checkmark"></label></td> 
+  </tr> 
+
+    <!--Alteraciones de las células Epiteliales (células escamosas)-->
+   <tr><td colspan="5"  style="text-align: left;" ><!--Alteraciones de las células Epiteliales-->
+   <label style="padding-left:1%;background-color:#A4A4A4;border:1px solid black; width:100%"><h5 style="font-weight: bold;display:inline">Alteraciones de las células Epiteliales (células escamosas)</h5></label></td></tr>
+   <tr><td colspan="2"  style="text-align: center;" >
+   <label style="padding-right:5%;"><h5 style="font-weight: bold;display:inline">Lesiones de bajo grado</h5></label></td>
+   <td colspan="3"  style="text-align: center;" >
+   <label style="padding-right:5%;"><h5 style="font-weight: bold;display:inline">Lesiones de bajo alto</h5></label></td></tr>
+   <tr ><td colspan="2" style="text-align: left;width: 20%;padding-bottom:1%">
+   	<label class="formato container" style="display:inline"><input type="checkbox"  id="altepitelial1">No presente<span class="checkbox"></label></td> 
+   <td colspan="3" style="text-align: left;width: 80%;padding-bottom:1%">
+   	<label class="formato container" style="display:inline"><input type="checkbox"  id="altepitelial2">No presente<span class="checkbox"></label></td> 
+   </tr> <tr ><td colspan="2" style="text-align: left;width: 20%;padding-bottom:1%">
+   	<label class="formato container" style="display:inline"><input type="checkbox"  id="altepitelial3">Compatible con NIC I<span class="checkbox"></label></td> 
+   <td colspan="3" style="text-align: left;width: 80%;padding-bottom:1%">
+   	<label class="formato container" style="display:inline"><input type="checkbox"  id="altepitelial4">Compatible con NIC II<span class="checkbox"></label></td> 
+   </tr> <tr ><td colspan="2" style="text-align: left;width: 20%;padding-bottom:1%">
+   	<label class="formato container" style="display:inline"><input type="checkbox"  id="altepitelial5">Asociado al Virus del Papiloma Humano (HPV)<span class="checkbox"></label></td> 
+   <td colspan="3" style="text-align: left;width: 80%;padding-bottom:1%">
+   	<label class="formato container" style="display:inline"><input type="checkbox"  id="altepitelial6" >Compatible con NIC III<span class="checkbox"></label></td> 
+   </tr> <tr ><td colspan="2" style="text-align: left;width: 20%;padding-bottom:1%"></td> 
+   <td colspan="3" style="text-align: left;width: 80%;padding-bottom:1%">
+   	<label class="formato container" style="display:inline"><input type="checkbox"  id="altepitelial7" >Asociado al Virus del Papiloma Humano (HPV)<span class="checkbox"></label></td> 
+   </tr> 
+
+  <!--Alteraciones de las células Glandulares-->
+  <tr><td colspan="5"  style="text-align: left;" ><!--Alteraciones de las células Glandulares-->
+  <label style="padding-left:1%;background-color:#A4A4A4;border:1px solid black; width:100%"><h5 style="font-weight: bold;display:inline">Alteraciones de las células Glandulares</h5></label></td></tr>
+  <tr ><td colspan="2" style="text-align: left;width: 20%;padding-bottom:1%">
+  	<label class="formato container" style="display:inline"><input type="radio" name="radio3" id="altglandular1">No presente<span class="checkmark"></label></td> 
+  <td colspan="3" style="text-align: left;width: 80%;padding-bottom:1%">
+  	<label class="formato container" style="display:inline"><input type="radio" name="radio3" id="altglandular2"> Células endocervical atípicas<span class="checkmark"></label></td> 
+  </tr> <tr ><td colspan="2" style="text-align: left;width: 20%;padding-bottom:1%">
+  	<label class="formato container" style="display:inline"><input type="radio" name="radio3" id="altglandular3">Adenocarcinoma endocervical IN SITU<span class="checkmark"></label></td> 
+  <td colspan="3" style="text-align: left;width: 80%;padding-bottom:1%">
+  	<label class="formato container" style="display:inline"><input type="radio" name="radio3" id="altglandular4">Células endometriales atípicas <span class="checkmark"></label></td> 
+  </tr> <tr ><td colspan="2" style="text-align: left;width: 20%;padding-bottom:1%">
+  	<label class="formato container" style="display:inline"><input type="radio" name="radio3" id="altglandular5">Adenocarcinoma endocervical<span class="checkmark"></label></td> 
+  <td colspan="3" style="text-align: left;width: 80%;padding-bottom:1%">
+  	<label class="formato container" style="display:inline"><input type="radio" name="radio3" id="altglandular6">Células glandulares atípicas<span class="checkmark"></label></td> 
+  </tr> <tr ><td colspan="2" style="text-align: left;width: 20%;padding-bottom:1%">
+  	<label class="formato container" style="display:inline"><input type="radio" name="radio3" id="altglandular7">Adenocarcinoma endometrial<span class="checkmark"></label></td> 
+  <td colspan="3" style="text-align: left;width: 80%;padding-bottom:1%">
+  	<label class="formato container" style="display:inline"><input type="radio" name="radio3" id="altglandular8">Células endocervical atípicas sospechosas de malignidad<span class="checkmark"></label></td> 
+  </tr> <tr ><td colspan="2" style="text-align: left;width: 20%;padding-bottom:1%">
+  	<label class="formato container" style="display:inline"><input type="radio"name="radio3"  id="altglandular9">Adenocarcinoma extrauterino<span class="checkmark"></label></td> 
+  <td colspan="3" style="text-align: left;width: 80%;padding-bottom:1%">
+  	<label class="formato container" style="display:inline"><input type="radio" name="radio3" id="altglandular10">Células endometriales atípicas sospechosas de malignidad<span class="checkmark"></label></td> 
+  </tr> <tr ><td colspan="2" style="text-align: left;width: 20%;padding-bottom:1%">
+  	<label class="formato container" style="display:inline"><input type="radio" name="radio3" id="altglandular11">Adenocarcinoma, sin especificar<span class="checkmark"></label></td> 
+  <td colspan="3" style="text-align: left;width: 80%;padding-bottom:1%">
+  	<label class="formato container" style="display:inline"><input type="radio" name="radio3" id="altglandular12">Células glandulares atípicas sospechosas de malignidad<span class="checkmark"></label></td></tr> 
+
+  <!--Evaluación Hormonal-->
+  <tr><td colspan="5"  style="text-align: left;" ><!--Evaluación Hormonal-->
+  <label style="padding-left:1%;background-color:#A4A4A4;border:1px solid black; width:100%"><h5 style="font-weight: bold; display:inline">Evaluación Hormonal</h5></label></td></tr>
+  <tr ><td colspan="2" style="text-align: left;width: 20%;padding-bottom:1%">
+  	<label class="formato container" style="display:inline"><input type="radio" name="radio4" id="evaluacion1">Patrón hormonal compatible con edad e historia<span class="checkmark"></label></td> 
+  <td colspan="3" style="text-align: left;width: 80%;padding-bottom:1%">
+  	<label class="formato container" style="display:inline"><input type="radio" name="radio4" id="evaluacion2" >Patrón hormonal imcompatible con edad e historia<span class="checkmark"></label>
+  </td></tr> 
+  <tr><td style="text-align: left;width: 100%;padding-bottom:1%" colspan="5">
+  	<label class="formato container"style="display:inline"><input type="radio"name="radio4"  id="evaluacion3" >Evaluación hormonal no posible debido a:<span class="checkmark"></label> 
+  <input type="text" id="evaluacion3det" class="form-control" style="width: 50%;display:inline " ></td></tr> 
+  <!--Resultado-->
+  <tr><td colspan="5"  style="text-align: left;" ><!--Valoración del Material-->
+  <label style="padding-left:1%;background-color:#A4A4A4;border:1px solid black; width:100%"><h5 style="font-weight: bold;display:inline">Resultado</h5></label></td></tr>
+  <tr><td colspan="5"  style="text-align: left;" ><!--Valoración del Material-->
+  <textarea  id="resultadobio"  rows="2" class="form-control" style="width: 95%;"></textarea></td></tr>
+  </tbody></table><br><br>
+</section>
+
+
+
+<!--DATOS GENERALES-->
+<section id="contenido_pruebasespeciales" >
+	 <div style="padding-bottom: 1%"></div>
+	<table><tbody>
+ 	<th><td style="text-align: left;width: 65%"><!--Patólogo-->
+ 	<label style="padding-right:1%"><h5>Patólogo/a</h5></label>
+ 	<input type="text" id="idpatologopruesp" class="form-control" style="width: 15%;display:inline " >
+ 	<div style="padding-left:1%; display: inline;">
+ 	<input type="text" id="nompatologopruesp" class="form-control" style="width: 55%;display:inline " >
+ 	<div style="padding-left:1%; display: inline;">
+ 	<button type="submit"  class="btn btn-secondary py-2 px-2" id="btnbuscarpatologo"> <img src="../../images/laboratorio/botones/buscar.png" width="20px"></button></td>
+ 	<td style="text-align: left;width: 35%"><!--TIPO DE muestra-->
+ 	<label style="padding-right:1%"><h5>Tipo Muestra</h5></label>
+ 	<select name="" id="tipmuestrapruesp" class="form-control"style="width: 55% ;display:inline">
+ 	<option value="1" selected>--Seleccionar-- </option>
+ 	</select></td></th></tbody></table><br>
+ 	<table  style="width: 100%;">
+ 	<tbody class="thead-dark" > <tr>
+ 	<td style="width: 10%"><button type="submit" style="display:inline" class="btn btn-secondary px-1 py-1" id="btnbuscar"> <img src="../../images/laboratorio/botones/prueba.png" width="20px"></button>
+ 	<div style="padding-left:6px; display: inline;">
+ 	<input type="text" class="form-control" style="width:60%;display:inline" id="codigomuepruesp"onkeypress="return validarnumeros(event)" placeholder="ID"></td> 
+ 	<td style="width: 25%"><input type="text" class="form-control" style="width: 100% ;display:inline " id="nombremuepruesp" onkeypress="return validarletras(event)" placeholder="Nombre de la muestra"></td> 
+ 	<td style="width: 15%"><input type="text" class="form-control" style="width: 100% ;display:inline " id="resultadomuepruesp" onkeypress="return validarnumeros(event)" placeholder="Valor del resultado"></td> 
+ 	<td style="width: 10%"><input type="text" class="desabilitado" style="width: 100% ;display:inline " id="unidadmuepruesp" disabled></td> 
+ 	<td style="width: 10%"><input type="text" class="desabilitado" style="width: 100% ;display:inline " id="vminimomuepruesp"  disabled></td> 
+ 	<td style="width: 10%"><input type="text" class="desabilitado" style="width: 100% ;display:inline " id="vmaximomuepruesp"  disabled></td> 
+   <td style="width:10%; text-align:center;"><button type="submit" class="btn btn-secondary " id="btnagregarpruesp" onclick="buscarcodfila(this)">  <b style="color: black">Agregar</b></button> </td> 
+ 	</tr></tbody></table>"
+ 	<div style="padding-bottom: 1%"></div>
+ 	<table  border="1" style="width: 100%; border-color: black;background-color:white;color:black; " id ="tablapruebasespeciales" >
+ 	<thead class="thead-dark" ><tr>
+ 	<th  style="text-align:center; width: 10%;background-color: #848484 ; color: black;height: 35px !important ;font-size:16px"><b>CÓDIGO</b></th> 
+ 	<th scope="col" style="text-align:center; width: 25%;background-color: #848484 ; color: black;font-size:16px"><b>VALORES</b></th> 
+ 	<th scope="col" style="text-align:center; width: 15%;background-color: #848484 ; color: black;font-size:16px "><b>RESULTADO</b></th>
+ 	<th scope="col" style="text-align:center; width: 10%;background-color: #848484 ; color: black ;font-size:16px" ><b>UNIDAD</b></th>
+ 	<th scope="col" style="text-align:center; width: 10%;background-color: #848484 ; color: black;font-size:16px "><b>MÍNIMO</b></th>
+  <th scope="col" style="text-align:center; width: 10%;background-color: #848484 ; color: black;font-size:16px "><b>MÁXIMO</b></th>
+ 	<th scope="col" style="text-align:center; width: 10%;background-color: #848484 ; color: black "></th>
+ 	 </tr>
+ 	</thead>
+ 	<tbody  style="background-color: white;text-align: right; font-size: 16px;" id="tabladetallepruesp"></tbody>
+ 	</table>
+</section>
+
+
+
+
+<!--DATOS GENERALES-->
+<section id="contenido_biopsia" >
+	<div style="padding-bottom: 1%"></div>
+	<table><tbody>
+	<th><td style="text-align: left;width: 55%"><!--Patólogo-->
+	<label style="padding-right:1%"><h5>Patólogo/a</h5></label>
+	<input type="text" id="idpatologobio" class="form-control" style="width: 15%;display:inline " >
+	<div style="padding-left:1%; display: inline;">
+	<input type="text" id="nompatologobio" class="form-control" style="width: 50%;display:inline " >
+	<div style="padding-left:1%; display: inline;">
+	<button type="submit"  class="btn btn-secondary py-2 px-2" id="btnbuscarpatologo"> <img src="../../images/laboratorio/botones/buscar.png" width="20px"></button></td>
+	<td style="text-align: left;width: 45%"><!--TIPO DE Especimen-->
+	<label style="padding-right:1%"><h5>Tipo Especimen</h5></label>
+	<select name="" id="tipespecimenbio" class="form-control"style="width: 60% ;display:inline">
+	<option value="1" selected>--Seleccionar-- </option>
+	</select></td></th></tbody></table><br>
+	<table  style="width: 100%;">
+	<tbody class="thead-dark" > <tr>
+	<td style="width: 50%;text-align: left"><!--Descripción Macroscópica-->
+	<label><h5>Descripción Macroscópica</h5></label>
+	<textarea  id="desmacroscopicabio"  rows="4" class="form-control" style="width: 95%;"></textarea></td>
+	<td style="width: 50%;text-align: left"><!--Descripción Microscópicas-->
+	<label><h5>Descripción Microscópica</h5></label>
+	<textarea  id="desmicroscopicabio"  rows="4" class="form-control" style="width: 95%;"></textarea>
+	</td ><tr><td><br></td ></tr></tr>
+	<td style="width: 50%;text-align: left"><!--Diagnóstico-->
+	<label><h5>Diagnóstico Anatomopatológico</h5></label>
+	<textarea id="diagnosticobio"  rows="4" class="form-control" style="width: 95%;"></textarea></td>
+	<td style="width: 50%;text-align: left"><!--Observación-->
+	<label><h5>Resultado</h5></label>
+	<textarea  id="resultadobio"  rows="4" class="form-control" style="width: 95%;"></textarea>
+	</td></tr></tbody></table> <br>
+	</section>

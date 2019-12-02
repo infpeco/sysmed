@@ -1,12 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <meta charset="utf-8">    
+    <title>Focus Admin: Admin UI</title>
+    <!-- Styles -->
+    <link href="../../css/lib/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/lib/themify-icons.css" rel="stylesheet">
+    <link href="../../css/lib/menubar/sidebar.css" rel="stylesheet">
+    <link href="../../css/lib/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/style.css" rel="stylesheet">
+    <script src="../../js/lib/jquery.min.js"></script>
+    <script src="../../js/lib/jquery.tmpl.js"></script>
+    <link rel="stylesheet" href="../../css/lib/style2.css">
+    <link rel="stylesheet" href="../../css/laboratorio/submodulos.css">
+    
+    
 </head>
-<body>
-    <h1>Tambien Falta tu Karen</h1>
+
+<body style="position:absolute; height:auto; width:100%;">
+    <!--MENU DE LA PAGINA-->
+    <div class="sidebar sidebar-hide-to-small sidebar-shrink sidebar-gestures" style="position:absolute;">
+        <div class="nano">
+            <div class="nano-content" style="font-family: Bahnschrift SemiBold" id="divmenu">
+         </div>
+    </div>
+</div>
+<!--HEADER O CABECERA DE LA PAGINA-->
+<div class="header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="float-left"><!--PARTE IZQUIERDA DE LA PAGINA-->
+                 <div class="hamburger sidebar-toggle" id="divheaderizquierda" ></div> 
+            </div>
+            <div style="padding-left: 1%; display: inline;" id="divheadertitulo"><!--TITULO DE LA PAGINA--></div>
+            <div class="float-right" id="divheadersalir"><!--PARTE DERECHA DE LA PAGINA--></div>
+        </div>
+    </div>
+</div>
+</div>
+<!--CUERPO DEL DOCUMENTO-->
+ <div class="content-wrap">
+  <div class="container-fluid">
+    <div class="row"> 
+      <div class="col-lg-12">  
+        <div class="card">
+          <section  class="main-content"> <!--aqui va el contenido, dentro de la seccion-->
+            <div class="tab" >
+            <button  id="btnmuestra" onclick="abrirmantenimiento()"><b>Mantenimiento</b></button>
+            <button  id="btnfacturacion" onclick="abrirfacturacion()"><b>Facturación</b></button>
+            <button  id="btnresultados" onclick="abrirresultados()"><b>Resultados</b></button>
+            <button  id="btnconsulta" onclick="abrirconsulta()"><b>Consulta</b></button>
+          </div><br>
+          <p align="center"><img src="../../images/laboratorio/index.png" style="max-width: 100%;height: auto;"></p>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- jquery vendor -->
+<script language="javascript"  src="../../js/laboratorio/contenido_laboratorio.js"></script>
+
+<script src="../../js/lib/jquery.min.js"></script>
+<script src="../../js/lib/jquery.nanoscroller.min.js"></script>
+<!-- nano scroller -->
+<script src="../../js/lib/menubar/sidebar.js"></script>
+<script src="../../js/lib/preloader/pace.min.js"></script>
+<!-- sidebar -->
+<script src="../../js/lib/bootstrap.min.js"></script>
+<script src="../../js/scripts.js"></script>
+<script src="../../js/menu/menumodulos.js"></script>
+
 </body>
 </html>
